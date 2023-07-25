@@ -22,7 +22,7 @@ public class AllergenEntity {
 	private String name;
 	@Column(name="allergen_icon")
 	private String icon;
-	@Version // da li se ovo cuva u bazi?
+	@Version 
 	private Integer version;
 	
 	//veza sa sastojcima manytomany; 
