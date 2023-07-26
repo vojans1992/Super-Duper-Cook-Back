@@ -1047,3 +1047,9 @@ java.sql.SQLException: Field 'ingredient_id' doesn't have a default value
 2023-07-26 17:35:21.362  INFO 10700 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-07-26 17:35:21.363  INFO 10700 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
 2023-07-26 17:35:21.368  INFO 10700 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 3 ms
+2023-07-26 17:38:51.479  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:38:51.496  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:38:51.498  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 17:38:51.514  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:38:51.527  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:38:51.545  INFO 10700 --- [RMI TCP Connection(11)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
