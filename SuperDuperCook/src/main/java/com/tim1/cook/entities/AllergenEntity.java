@@ -21,7 +21,7 @@ public class AllergenEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name= "allergen_id")
+	@Column(name= "allergen_id)")
 	private Integer id;
 	@Column(name= "allergen_name")
 	private String name;
@@ -30,10 +30,12 @@ public class AllergenEntity {
 	@Version 
 	private Integer version;
 	
-	//veza sa sastojcima manytomany; 
 	
 	@ManyToMany(mappedBy =  "allergens")
 	List<IngredientEntity> ingredients= new ArrayList<IngredientEntity>();
+	
+	@ManyToMany(mappedBy =  "allergens")
+	List<UserEntity> users= new ArrayList<UserEntity>();
 	
 	
 
