@@ -1,4 +1,4 @@
-package com.tim1.cook.services;
+package com.tim1.cook.service;
 
 import java.util.List;
 

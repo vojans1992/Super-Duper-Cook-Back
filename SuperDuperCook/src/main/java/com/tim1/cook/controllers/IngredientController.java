@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.tim1.cook.entities.IngredientEntity;
-import com.tim1.cook.services.IngredientService;
+import com.tim1.cook.service.IngredientService;
 
 @RestController
 @RequestMapping("/api/v1/ingredients")
