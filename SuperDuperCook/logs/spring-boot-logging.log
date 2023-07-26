@@ -678,3 +678,23 @@ java.util.NoSuchElementException: No value present
 2023-07-26 15:14:10.176  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : /api/v1/cook/deleteCook started.
 2023-07-26 15:14:10.178  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Cook found.
 2023-07-26 15:14:10.181  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Finished OK.
+2023-07-26 16:20:21.301  INFO 14772 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on DESKTOP-L7V1H1L with PID 14772 (C:\Users\User\Documents\GitHub\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by User in C:\Users\User\Documents\GitHub\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 16:20:21.318  INFO 14772 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 16:20:22.421  INFO 14772 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 16:20:22.544  INFO 14772 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 5 JPA repository interfaces.
+2023-07-26 16:20:23.404  INFO 14772 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 16:20:23.442  INFO 14772 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 16:20:23.443  INFO 14772 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 16:20:23.638  INFO 14772 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 16:20:23.640  INFO 14772 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2220 ms
+2023-07-26 16:20:24.692  INFO 14772 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 16:20:25.405  INFO 14772 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 16:20:27.744  INFO 14772 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 16:20:29.367  WARN 14772 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 16:20:30.133  INFO 14772 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 16:20:30.149  INFO 14772 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 9.527 seconds (JVM running for 11.163)
+2023-07-26 16:46:18.069  INFO 14772 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 16:46:18.107  INFO 14772 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 16:46:18.130  INFO 14772 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 16:46:18.134  INFO 14772 --- [RMI TCP Connection(2)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 16:46:18.158  INFO 14772 --- [RMI TCP Connection(2)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
