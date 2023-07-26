@@ -725,3 +725,325 @@ java.util.NoSuchElementException: No value present
 2023-07-26 16:18:18.417  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
 2023-07-26 16:18:18.458  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
 
+2023-07-26 16:53:32.313  INFO 8204 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 8204 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 16:53:32.348  INFO 8204 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 16:53:34.709  INFO 8204 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 16:53:34.989  INFO 8204 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 143 ms. Found 5 JPA repository interfaces.
+2023-07-26 16:53:36.040  INFO 8204 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 16:53:36.077  INFO 8204 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 16:53:36.078  INFO 8204 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 16:53:36.375  INFO 8204 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 16:53:36.380  INFO 8204 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3877 ms
+2023-07-26 16:53:37.396  INFO 8204 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 16:53:38.019  INFO 8204 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 16:53:38.599 ERROR 8204 --- [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: mappedBy reference an unknown target entity property: com.tim1.cook.entities.RecipeIngredientRatioEntity.ingredient in com.tim1.cook.entities.IngredientEntity.recipeIngredient
+2023-07-26 16:53:38.603  WARN 8204 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.tim1.cook.entities.RecipeIngredientRatioEntity.ingredient in com.tim1.cook.entities.IngredientEntity.recipeIngredient
+2023-07-26 16:53:38.604  INFO 8204 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 16:53:38.626  INFO 8204 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 16:53:38.632  INFO 8204 --- [main] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 16:53:38.664  INFO 8204 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-07-26 16:53:38.699 ERROR 8204 --- [main] o.s.b.SpringApplication                  : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.tim1.cook.entities.RecipeIngredientRatioEntity.ingredient in com.tim1.cook.entities.IngredientEntity.recipeIngredient
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.8.jar:2.7.8]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.8.jar:2.7.8]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.8.jar:2.7.8]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.8.jar:2.7.8]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.8.jar:2.7.8]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.8.jar:2.7.8]
+	at com.tim1.cook.SuperDuperCookApplication.main(SuperDuperCookApplication.java:10) ~[classes/:?]
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.tim1.cook.entities.RecipeIngredientRatioEntity.ingredient in com.tim1.cook.entities.IngredientEntity.recipeIngredient
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:875) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:826) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:54) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1653) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1629) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:295) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.25.jar:5.3.25]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.25.jar:5.3.25]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.25.jar:5.3.25]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-5.3.25.jar:5.3.25]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.25.jar:5.3.25]
+	... 16 more
+
+2023-07-26 16:57:24.749  INFO 2760 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 2760 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 16:57:24.786  INFO 2760 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 16:57:27.113  INFO 2760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 16:57:27.354  INFO 2760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 175 ms. Found 5 JPA repository interfaces.
+2023-07-26 16:57:29.200  INFO 2760 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 16:57:29.280  INFO 2760 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 16:57:29.290  INFO 2760 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 16:57:29.659  INFO 2760 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 16:57:29.660  INFO 2760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4703 ms
+2023-07-26 16:57:31.421  INFO 2760 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 16:57:32.518  INFO 2760 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 16:57:36.227  INFO 2760 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 16:57:37.916  WARN 2760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 16:57:39.079  INFO 2760 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 16:57:39.128  INFO 2760 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 16.045 seconds (JVM running for 19.653)
+2023-07-26 16:58:17.399  INFO 2760 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-26 16:58:17.400  INFO 2760 --- [http-nio-8080-exec-3] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-26 16:58:17.411  INFO 2760 --- [http-nio-8080-exec-3] o.s.w.s.DispatcherServlet                : Completed initialization in 3 ms
+2023-07-26 16:58:18.255 ERROR 2760 --- [http-nio-8080-exec-3] o.h.e.j.s.SqlExceptionHelper             : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as allergen1_0_1_, allergenen1_.allergen_icon as allergen2_0_1_, allergenen1_.' at line 1
+2023-07-26 16:58:18.266  WARN 2760 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: could not extract ResultSet; nested exception is com.fasterxml.jackson.databind.JsonMappingException: could not extract ResultSet (through reference chain: java.util.ArrayList[0]->com.tim1.cook.entities.IngredientEntity["allergens"])]
+2023-07-26 16:59:00.205 ERROR 2760 --- [http-nio-8080-exec-4] o.h.e.j.s.SqlExceptionHelper             : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as allergen1_0_1_, allergenen1_.allergen_icon as allergen2_0_1_, allergenen1_.' at line 1
+2023-07-26 16:59:00.206  WARN 2760 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: could not extract ResultSet; nested exception is com.fasterxml.jackson.databind.JsonMappingException: could not extract ResultSet (through reference chain: java.util.ArrayList[0]->com.tim1.cook.entities.IngredientEntity["allergens"])]
+2023-07-26 17:25:21.608 ERROR 2760 --- [http-nio-8080-exec-8] o.h.e.j.s.SqlExceptionHelper             : Field 'ingredient_id' doesn't have a default value
+2023-07-26 17:25:21.622 ERROR 2760 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: could not execute statement; nested exception is org.hibernate.exception.GenericJDBCException: could not execute statement] with root cause
+
+java.sql.SQLException: Field 'ingredient_id' doesn't have a default value
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994) ~[mysql-connector-j-8.0.32.jar:8.0.32]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:58) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3279) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3914) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:329) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:122) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:756) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:742) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.25.jar:5.3.25]
+	at jdk.proxy2.$Proxy133.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.25.jar:5.3.25]
+	at jdk.proxy2.$Proxy133.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:666) ~[spring-data-jpa-2.7.7.jar:2.7.7]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:530) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:286) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:640) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139) ~[spring-data-commons-2.7.7.jar:2.7.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.25.jar:5.3.25]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.25.jar:5.3.25]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.7.7.jar:2.7.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.25.jar:5.3.25]
+	at jdk.proxy2.$Proxy145.save(Unknown Source) ~[?:?]
+	at com.tim1.cook.service.IngredientServiceImpl.saveIngredient(IngredientServiceImpl.java:22) ~[classes/:?]
+	at com.tim1.cook.controllers.IngredientController.createIngredient(IngredientController.java:25) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.25.jar:5.3.25]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+
+2023-07-26 17:27:02.078  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:27:02.116  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:27:02.125  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 17:27:02.191  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:27:02.197  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:27:02.262  INFO 2760 --- [RMI TCP Connection(42)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 17:27:12.694  INFO 8972 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 8972 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 17:27:12.742  INFO 8972 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 17:27:14.673  INFO 8972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 17:27:14.888  INFO 8972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 180 ms. Found 5 JPA repository interfaces.
+2023-07-26 17:27:16.400  INFO 8972 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 17:27:16.467  INFO 8972 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 17:27:16.469  INFO 8972 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 17:27:16.797  INFO 8972 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 17:27:16.798  INFO 8972 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3889 ms
+2023-07-26 17:27:18.450  INFO 8972 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 17:27:19.329  INFO 8972 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 17:27:22.028  INFO 8972 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:27:23.186  WARN 8972 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 17:27:24.129  INFO 8972 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 17:27:24.169  INFO 8972 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 12.827 seconds (JVM running for 16.694)
+2023-07-26 17:27:46.106  INFO 8972 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-26 17:27:46.107  INFO 8972 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-26 17:27:46.117  INFO 8972 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 6 ms
+2023-07-26 17:27:46.935 ERROR 8972 --- [http-nio-8080-exec-1] o.h.e.j.s.SqlExceptionHelper             : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as allergen1_0_1_, allergenen1_.allergen_icon as allergen2_0_1_, allergenen1_.' at line 1
+2023-07-26 17:27:46.946  WARN 8972 --- [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: could not extract ResultSet; nested exception is com.fasterxml.jackson.databind.JsonMappingException: could not extract ResultSet (through reference chain: java.util.ArrayList[0]->com.tim1.cook.entities.IngredientEntity["allergens"])]
+2023-07-26 17:29:56.238  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:29:56.259  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:29:56.261  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 17:29:56.281  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:29:56.284  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:29:56.325  INFO 8972 --- [RMI TCP Connection(10)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 17:30:07.827  INFO 780 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 780 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 17:30:07.860  INFO 780 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 17:30:09.753  INFO 780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 17:30:09.938  INFO 780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 158 ms. Found 5 JPA repository interfaces.
+2023-07-26 17:30:11.259  INFO 780 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 17:30:11.347  INFO 780 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 17:30:11.350  INFO 780 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 17:30:11.654  INFO 780 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 17:30:11.656  INFO 780 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3634 ms
+2023-07-26 17:30:13.009  INFO 780 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 17:30:13.887  INFO 780 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 17:30:16.924  INFO 780 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:30:18.100  WARN 780 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 17:30:18.955  INFO 780 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 17:30:18.984  INFO 780 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 12.44 seconds (JVM running for 15.196)
+2023-07-26 17:30:59.002  INFO 780 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:30:59.020  INFO 780 --- [RMI TCP Connection(8)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:30:59.060  INFO 780 --- [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:30:59.063  INFO 780 --- [RMI TCP Connection(8)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:30:59.093  INFO 780 --- [RMI TCP Connection(8)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 17:31:14.830  INFO 1980 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 1980 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 17:31:14.878  INFO 1980 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 17:31:16.857  INFO 1980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 17:31:17.074  INFO 1980 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 154 ms. Found 5 JPA repository interfaces.
+2023-07-26 17:31:18.664  INFO 1980 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 17:31:18.739  INFO 1980 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 17:31:18.740  INFO 1980 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 17:31:19.087  INFO 1980 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 17:31:19.087  INFO 1980 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4055 ms
+2023-07-26 17:31:20.679  INFO 1980 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 17:31:21.646  INFO 1980 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 17:31:25.177  INFO 1980 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:31:26.407  WARN 1980 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 17:31:27.427  INFO 1980 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 17:31:27.480  INFO 1980 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 14.339 seconds (JVM running for 18.222)
+2023-07-26 17:31:39.054  INFO 1980 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-26 17:31:39.055  INFO 1980 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-26 17:31:39.058  INFO 1980 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Completed initialization in 3 ms
+2023-07-26 17:32:10.442 ERROR 1980 --- [http-nio-8080-exec-6] o.h.e.j.s.SqlExceptionHelper             : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as allergen1_0_1_, allergenen1_.allergen_icon as allergen2_0_1_, allergenen1_.' at line 1
+2023-07-26 17:32:10.452  WARN 1980 --- [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: could not extract ResultSet; nested exception is com.fasterxml.jackson.databind.JsonMappingException: could not extract ResultSet (through reference chain: java.util.ArrayList[0]->com.tim1.cook.entities.IngredientEntity["allergens"])]
+2023-07-26 17:32:28.235 ERROR 1980 --- [http-nio-8080-exec-7] o.h.e.j.s.SqlExceptionHelper             : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as allergen1_0_1_, allergenen1_.allergen_icon as allergen2_0_1_, allergenen1_.' at line 1
+2023-07-26 17:32:28.236  WARN 1980 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: could not extract ResultSet; nested exception is com.fasterxml.jackson.databind.JsonMappingException: could not extract ResultSet (through reference chain: com.tim1.cook.entities.IngredientEntity["allergens"])]
+2023-07-26 17:33:37.244  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:33:37.276  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:33:37.279  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 17:33:37.311  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:33:37.322  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:33:37.364  INFO 1980 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 17:34:22.239  INFO 3868 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 3868 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 17:34:22.260  INFO 3868 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 17:34:24.143  INFO 3868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 17:34:24.307  INFO 3868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 5 JPA repository interfaces.
+2023-07-26 17:34:25.494  INFO 3868 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 17:34:25.571  INFO 3868 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 17:34:25.574  INFO 3868 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 17:34:25.860  INFO 3868 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 17:34:25.861  INFO 3868 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3408 ms
+2023-07-26 17:34:27.196  INFO 3868 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 17:34:28.006  INFO 3868 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 17:34:30.870  INFO 3868 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:34:31.975  WARN 3868 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 17:34:32.778  INFO 3868 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 17:34:32.801  INFO 3868 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 11.737 seconds (JVM running for 14.6)
+2023-07-26 17:34:50.148  INFO 3868 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 17:34:50.169  INFO 3868 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 17:34:50.212  INFO 3868 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:34:50.218  INFO 3868 --- [RMI TCP Connection(2)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 17:34:50.246  INFO 3868 --- [RMI TCP Connection(2)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-26 17:35:03.981  INFO 10700 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 10700 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 17:35:03.999  INFO 10700 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 17:35:05.811  INFO 10700 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 17:35:05.999  INFO 10700 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 154 ms. Found 5 JPA repository interfaces.
+2023-07-26 17:35:07.449  INFO 10700 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 17:35:07.527  INFO 10700 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 17:35:07.532  INFO 10700 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 17:35:07.967  INFO 10700 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 17:35:07.968  INFO 10700 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3817 ms
+2023-07-26 17:35:09.531  INFO 10700 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 17:35:10.491  INFO 10700 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 17:35:13.517  INFO 10700 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 17:35:14.916  WARN 10700 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 17:35:15.934  INFO 10700 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 17:35:15.968  INFO 10700 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 13.233 seconds (JVM running for 16.181)
+2023-07-26 17:35:21.362  INFO 10700 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-26 17:35:21.363  INFO 10700 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-26 17:35:21.368  INFO 10700 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 3 ms
