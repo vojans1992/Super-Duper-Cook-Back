@@ -678,3 +678,27 @@ java.util.NoSuchElementException: No value present
 2023-07-26 15:14:10.176  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : /api/v1/cook/deleteCook started.
 2023-07-26 15:14:10.178  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Cook found.
 2023-07-26 15:14:10.181  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Finished OK.
+2023-07-26 16:16:33.625  INFO 664 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.4.1 on Bojan with PID 664 (C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Dragana in C:\Users\Dragana\Desktop\BrainsPraksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-26 16:16:33.651  INFO 664 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-26 16:16:35.992  INFO 664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-26 16:16:36.198  INFO 664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 159 ms. Found 5 JPA repository interfaces.
+2023-07-26 16:16:37.606  INFO 664 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-26 16:16:37.682  INFO 664 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-26 16:16:37.686  INFO 664 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-26 16:16:38.025  INFO 664 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-26 16:16:38.025  INFO 664 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4204 ms
+2023-07-26 16:16:39.367  INFO 664 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-26 16:16:40.324  INFO 664 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-26 16:16:43.658  INFO 664 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 16:16:44.913  WARN 664 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-26 16:16:45.842  INFO 664 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-26 16:16:45.877  INFO 664 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 13.746 seconds (JVM running for 16.771)
+2023-07-26 16:16:55.113  INFO 664 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-26 16:16:55.114  INFO 664 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-26 16:16:55.116  INFO 664 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 2 ms
+2023-07-26 16:18:18.370  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 16:18:18.391  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 16:18:18.393  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 16:18:18.414  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 16:18:18.417  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 16:18:18.458  INFO 664 --- [RMI TCP Connection(9)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.

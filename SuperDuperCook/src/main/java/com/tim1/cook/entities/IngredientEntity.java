@@ -1,16 +1,31 @@
 package com.tim1.cook.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class IngredientEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ingredient_id")
     private Integer id;
     private String name;
     private String measurementUnit;
@@ -21,14 +36,27 @@ public class IngredientEntity {
     private double saturatedFat;
     private double protein;
     
-    @OneToOne
-    private AllergenEntity allergen;
+    
+    @ManyToMany
+    @JoinTable(
+    		name = "ingredient_allergen",
+    		joinColumns = @JoinColumn(name = "ingredient_id"),
+    		inverseJoinColumns = @JoinColumn(name = "allergen_id")
+    		)
+    private List<AllergenEntity> allergens = new ArrayList<AllergenEntity>();
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+    private List <RecipeIngredientRatioEntity> recipeIngredient = new ArrayList <RecipeIngredientRatioEntity>(); 
     
     
+
+
 
 
 	public IngredientEntity(Integer id, String name, String measurementUnit, double calories, double carboHydrate,
-			double sugar, double fat, double saturatedFat, double protein, AllergenEntity allergen) {
+			double sugar, double fat, double saturatedFat, double protein, List<AllergenEntity> allergens,
+			List<RecipeIngredientRatioEntity> recipeIngredient) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,7 +67,8 @@ public class IngredientEntity {
 		this.fat = fat;
 		this.saturatedFat = saturatedFat;
 		this.protein = protein;
-		this.allergen = allergen;
+		this.allergens = allergens;
+		this.recipeIngredient = recipeIngredient;
 	}
 
 
@@ -137,16 +166,30 @@ public class IngredientEntity {
 	}
 
 
-	public AllergenEntity getAllergen() {
-		return allergen;
-	}
-
-
-	public void setAllergen(AllergenEntity allergen) {
-		this.allergen = allergen;
-	}
+	
+	
     
-	 @Override
+	 public List<AllergenEntity> getAllergens() {
+		return allergens;
+	}
+
+
+	public void setAllergens(List<AllergenEntity> allergens) {
+		this.allergens = allergens;
+	}
+
+
+	public List<RecipeIngredientRatioEntity> getRecipeIngredient() {
+		return recipeIngredient;
+	}
+
+
+	public void setRecipeIngredient(List<RecipeIngredientRatioEntity> recipeIngredient) {
+		this.recipeIngredient = recipeIngredient;
+	}
+
+
+	@Override
 	    public String toString() {
 	        return "IngredientEntity{" +
 	                "id=" + id +
@@ -158,7 +201,7 @@ public class IngredientEntity {
 	                ", fat=" + fat +
 	                ", saturatedFat=" + saturatedFat +
 	                ", protein=" + protein +
-	                ", allergen=" + allergen +
+	                ", allergens=" + allergens +
 	                '}';
 	    }
     
