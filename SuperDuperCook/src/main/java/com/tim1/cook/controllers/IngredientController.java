@@ -64,7 +64,7 @@ public class IngredientController {
         existingIngredient.setFat(updatedIngredient.getFat());
         existingIngredient.setSaturatedFat(updatedIngredient.getSaturatedFat());
         existingIngredient.setProtein(updatedIngredient.getProtein());
-        existingIngredient.setAllergen(updatedIngredient.getAllergen());
+        existingIngredient.setAllergens(updatedIngredient.getAllergens());
 
         IngredientEntity updatedIngredientEntity = ingredientService.saveIngredient(existingIngredient);
         return ResponseEntity.ok(updatedIngredientEntity);

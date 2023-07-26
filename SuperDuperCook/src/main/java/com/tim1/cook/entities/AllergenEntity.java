@@ -32,7 +32,7 @@ public class AllergenEntity {
 	
 	//veza sa sastojcima manytomany; 
 	
-	@ManyToMany(mappedBy =  "Allergens")
+	@ManyToMany(mappedBy =  "allergens")
 	List<IngredientEntity> ingredients= new ArrayList<IngredientEntity>();
 	
 	
