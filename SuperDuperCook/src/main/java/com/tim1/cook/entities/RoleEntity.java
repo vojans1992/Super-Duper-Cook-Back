@@ -31,7 +31,7 @@ public class RoleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	//@SQLDelete(sql = "UPDATE role SET deleted = true WHERE id = ? AND version = ?", check = ResultCheckStyle.COUNT)
+	@SQLDelete(sql = "UPDATE role SET deleted = true WHERE id = ? AND version = ?", check = ResultCheckStyle.COUNT)
 	@Where(clause = "deleted = false")
 	@Column(name = "role_id")
 	private Integer Id;
@@ -77,5 +77,11 @@ public class RoleEntity {
 	}
 	public void setUsers(List<UserEntity> users) {
 		this.users = users;
+	}
+
+
+	public void setDeleted(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}		
 }

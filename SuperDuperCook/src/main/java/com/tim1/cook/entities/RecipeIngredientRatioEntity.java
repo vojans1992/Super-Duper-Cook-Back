@@ -31,11 +31,11 @@ public class RecipeIngredientRatioEntity {
 	@JoinColumn (name= "recipe_id", nullable = false)
 	private RecipeEntity recipe;
 	
-	@NotNull(message = "Recipe ingredient ratio must be connected to an ingredient.")
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@MapsId("ingredientId")
-	@JoinColumn (name= "ingredient_id", nullable = false)
-	private IngredientEntity ingredient;
+	//@NotNull(message = "Recipe ingredient ratio must be connected to an ingredient.")
+	//@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	//@MapsId("ingredientId")
+	//@JoinColumn (name= "ingredient_id", nullable = false)
+	//private IngredientEntity ingredient;
 
 	public RecipeIngredientRatioEntity() {
 		super();
@@ -66,13 +66,13 @@ public class RecipeIngredientRatioEntity {
 		this.recipe = recipe;
 	}
 
-	public IngredientEntity getIngredient() {
+	/*public IngredientEntity getIngredient() {
 		return ingredient;
 	}
 
 	public void setIngredient(IngredientEntity ingredient) {
 		this.ingredient = ingredient;
-	}
+	}*/
 	
 	
 	
