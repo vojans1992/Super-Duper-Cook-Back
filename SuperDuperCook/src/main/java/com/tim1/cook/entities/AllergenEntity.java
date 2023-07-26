@@ -1,10 +1,14 @@
 package com.tim1.cook.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -17,6 +21,7 @@ public class AllergenEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name= "allergen_id)")
 	private Integer id;
 	@Column(name= "allergen_name")
 	private String name;
@@ -27,7 +32,30 @@ public class AllergenEntity {
 	
 	//veza sa sastojcima manytomany; 
 	
+	@ManyToMany(mappedBy =  "Allergens")
+	List<IngredientEntity> ingredients= new ArrayList<IngredientEntity>();
 	
+	
+
+	public AllergenEntity(Integer id, String name, String icon, Integer version, List<IngredientEntity> ingredients) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.icon = icon;
+		this.version = version;
+		this.ingredients = ingredients;
+	}
+
+
+	public List<IngredientEntity> getIngredients() {
+		return ingredients;
+	}
+
+
+	public void setIngredients(List<IngredientEntity> ingredients) {
+		this.ingredients = ingredients;
+	}
+
 
 	public AllergenEntity(Integer id, String name, String icon) {
 		super();
