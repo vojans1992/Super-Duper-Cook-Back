@@ -1,0 +1,42 @@
+2023-07-27 16:50:49.844  INFO 1880 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.5 on DESKTOP-GJ5UVKI with PID 1880 (C:\Users\Korisnik\Desktop\BRAINS praksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\BRAINS praksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-27 16:50:49.857  INFO 1880 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-27 16:50:50.821  INFO 1880 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-27 16:50:50.954  INFO 1880 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117 ms. Found 8 JPA repository interfaces.
+2023-07-27 16:50:51.787  INFO 1880 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-27 16:50:51.832  INFO 1880 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-27 16:50:51.832  INFO 1880 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-27 16:50:52.021  INFO 1880 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-27 16:50:52.022  INFO 1880 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2103 ms
+2023-07-27 16:50:52.741  INFO 1880 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-27 16:50:53.263  INFO 1880 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-27 16:50:55.242  INFO 1880 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-27 16:50:55.952  WARN 1880 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-27 16:50:56.486  INFO 1880 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-27 16:50:56.499  INFO 1880 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 7.353 seconds (JVM running for 8.675)
+2023-07-27 16:51:57.737  INFO 1880 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-27 16:51:57.737  INFO 1880 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-27 16:51:57.739  INFO 1880 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Completed initialization in 1 ms
+2023-07-27 17:35:14.220  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-27 17:35:14.255  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-27 17:35:14.258  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-27 17:35:14.279  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-27 17:35:14.284  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-27 17:35:14.298  INFO 1880 --- [RMI TCP Connection(54)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2023-07-27 17:35:18.177  INFO 19164 --- [main] c.t.c.SuperDuperCookApplication          : Starting SuperDuperCookApplication using Java 17.0.5 on DESKTOP-GJ5UVKI with PID 19164 (C:\Users\Korisnik\Desktop\BRAINS praksa\Super-Duper-Cook-Back\SuperDuperCook\target\classes started by Korisnik in C:\Users\Korisnik\Desktop\BRAINS praksa\Super-Duper-Cook-Back\SuperDuperCook)
+2023-07-27 17:35:18.192  INFO 19164 --- [main] c.t.c.SuperDuperCookApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-07-27 17:35:19.416  INFO 19164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-27 17:35:19.567  INFO 19164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 8 JPA repository interfaces.
+2023-07-27 17:35:20.595  INFO 19164 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2023-07-27 17:35:20.644  INFO 19164 --- [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2023-07-27 17:35:20.646  INFO 19164 --- [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-07-27 17:35:20.889  INFO 19164 --- [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2023-07-27 17:35:20.890  INFO 19164 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2617 ms
+2023-07-27 17:35:21.865  INFO 19164 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2023-07-27 17:35:22.491  INFO 19164 --- [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2023-07-27 17:35:24.558  INFO 19164 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-27 17:35:25.436  WARN 19164 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-27 17:35:26.157  INFO 19164 --- [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2023-07-27 17:35:26.174  INFO 19164 --- [main] c.t.c.SuperDuperCookApplication          : Started SuperDuperCookApplication in 8.875 seconds (JVM running for 10.506)
+2023-07-27 17:35:56.505  INFO 19164 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-07-27 17:35:56.506  INFO 19164 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2023-07-27 17:35:56.508  INFO 19164 --- [http-nio-8080-exec-2] o.s.w.s.DispatcherServlet                : Completed initialization in 2 ms

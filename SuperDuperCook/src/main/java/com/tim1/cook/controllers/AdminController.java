@@ -39,7 +39,7 @@ public class AdminController {
 	
 	
 	//@Secured("ROLE_ADMIN")
-	@RequestMapping(method = RequestMethod.POST, value = "/")	
+	@RequestMapping(method = RequestMethod.POST)	
 	public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminEntity newadmin) {
 		logger.info("/api/v1/admin/createAdmin started.");
 		try {	
@@ -55,7 +55,7 @@ public class AdminController {
 
 	//@Secured("ROLE_ADMIN")
 	//@JsonView(Views.Admin.class)
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<AdminEntity>> getAllAdmins() {
 		logger.info("/api/v1/admin/getAllAdmins started.");
 		logger.info("Finished OK.");

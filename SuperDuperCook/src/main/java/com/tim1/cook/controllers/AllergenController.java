@@ -20,7 +20,7 @@ public class AllergenController {
 	@Autowired
 	AllergenService allergenService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/")
+	@RequestMapping(method = RequestMethod.POST)
 	 public ResponseEntity<AllergenEntity> createAllergen(@RequestBody AllergenEntity allergen) {
 	        AllergenEntity savedAllegen = allergenService.createNewAllergen(allergen);
 	        return ResponseEntity.ok(savedAllegen);
@@ -34,7 +34,7 @@ public class AllergenController {
         }
         return ResponseEntity.ok(allergens);
     }
-	@RequestMapping(method = RequestMethod.GET,  value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<AllergenEntity>>getAllAllergen(){
     	List<AllergenEntity> allergens = allergenService.getAllAllergens();
     	return ResponseEntity.ok(allergens);
