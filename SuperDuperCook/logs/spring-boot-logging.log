@@ -678,3 +678,9 @@ java.util.NoSuchElementException: No value present
 2023-07-26 15:14:10.176  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : /api/v1/cook/deleteCook started.
 2023-07-26 15:14:10.178  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Cook found.
 2023-07-26 15:14:10.181  INFO 28044 --- [http-nio-8080-exec-5] c.t.c.c.CookController                   : Finished OK.
+2023-07-26 15:27:36.178  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-07-26 15:27:36.192  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] o.a.c.c.StandardService                  : Stopping service [Tomcat]
+2023-07-26 15:27:36.193  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] o.a.c.c.C.[.[.[/]                        : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-07-26 15:27:36.199  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-07-26 15:27:36.200  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2023-07-26 15:27:36.204  INFO 28044 --- [RMI TCP Connection(24)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
