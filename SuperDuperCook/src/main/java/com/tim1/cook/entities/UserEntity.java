@@ -79,7 +79,18 @@ public class UserEntity {
 	}
 	public void setRole(RoleEntity role) {
 		this.role = role;
+	}
+
+	public List<AllergenEntity> getAllergens() {
+		return allergens;
+	}
+
+	public void setAllergens(List<AllergenEntity> allergens) {
+		this.allergens = allergens;
 	}	
+	
+	
+	
 	
 }
 
