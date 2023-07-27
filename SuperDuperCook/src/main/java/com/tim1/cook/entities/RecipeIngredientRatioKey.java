@@ -17,6 +17,16 @@ public class RecipeIngredientRatioKey implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public RecipeIngredientRatioKey(Integer recipeId, Integer ingredientId) {
+		super();
+		this.recipeId = recipeId;
+		this.ingredientId = ingredientId;
+	}
+
+
 
 	public Integer getRecipeId() {
 		return recipeId;

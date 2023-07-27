@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.tim1.cook.entities.CookEntity;
 import com.tim1.cook.entities.RecipeEntity;
 import com.tim1.cook.repositories.RecipeRepository;
 
@@ -14,6 +15,8 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Autowired
 	RecipeRepository repository;
+	
+	@Autowired CookService cookService;
 
 	@Override
 	public RecipeEntity saveRecipe(RecipeEntity newRecipe) {
@@ -21,20 +24,28 @@ public class RecipeServiceImpl implements RecipeService {
 		if(newRecipe.getId() != null) {
 			try {
 				entity = repository.findById(newRecipe.getId()).get();
-				return entity;
 			} catch (NoSuchElementException e) {
 				throw new NoSuchElementException("Recipe with ID: " + newRecipe.getId() + " does not exist.");
 			}
 		}else {
 			entity = new RecipeEntity();
 		}
-		entity.setAuthor(newRecipe.getAuthor());
 		entity.setDescription(newRecipe.getDescription());
 		entity.setGuide(newRecipe.getGuide());
 		entity.setPreparationTime(newRecipe.getPreparationTime());
 		entity.setQuantity(newRecipe.getQuantity());
 		entity.setRecipeIngredientRatios(newRecipe.getRecipeIngredientRatios());
 		entity.setTitle(newRecipe.getTitle());
+		
+		CookEntity author;
+		try {
+			author = cookService.findCookById(newRecipe.getAuthor().getId());
+			entity.setAuthor(author);
+		} catch (ClassCastException e) {
+			throw new ClassCastException("Cook with ID: " + newRecipe.getAuthor().getId() + " is not a cook entity.");
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(e.getMessage());
+		}
 		return repository.save(entity);
 	}
 

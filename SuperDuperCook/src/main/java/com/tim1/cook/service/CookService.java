@@ -5,4 +5,5 @@ public interface CookService {
 
 	public CookEntity createCook(CookEntity newcook);
 	public CookEntity updateCook(Integer id, CookEntity updatedCook);
+	public CookEntity findCookById(Integer id);
 }

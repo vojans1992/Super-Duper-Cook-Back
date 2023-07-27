@@ -49,7 +49,7 @@ public class UserEntity {
 	    		joinColumns = @JoinColumn(name = "user_id"),
 	    		inverseJoinColumns = @JoinColumn(name = "allergen_id")
 	    		)
-	    private List<AllergenEntity> allergy = new ArrayList<AllergenEntity>();
+	    private List<AllergenEntity> allergens = new ArrayList<AllergenEntity>();
 
 	public UserEntity() {
 		super();
