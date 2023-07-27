@@ -49,7 +49,7 @@ public class UserEntity {
 	    		joinColumns = @JoinColumn(name = "user_id"),
 	    		inverseJoinColumns = @JoinColumn(name = "allergen_id")
 	    		)
-	    private List<AllergenEntity> allergy = new ArrayList<AllergenEntity>();
+	    private List<AllergenEntity> allergens = new ArrayList<AllergenEntity>();
 
 	public UserEntity() {
 		super();
@@ -79,7 +79,18 @@ public class UserEntity {
 	}
 	public void setRole(RoleEntity role) {
 		this.role = role;
+	}
+
+	public List<AllergenEntity> getAllergens() {
+		return allergens;
+	}
+
+	public void setAllergens(List<AllergenEntity> allergens) {
+		this.allergens = allergens;
 	}	
+	
+	
+	
 	
 }
 
