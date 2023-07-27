@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -41,6 +43,11 @@ public class RecipeEntity {
 	
 	@NotNull(message = "Quantity must be provided.")
 	private String quantity;
+	
+	@NotNull(message = "Recipe must have an author.")
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name= "author", nullable = false)
+	private CookEntity author;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -97,6 +104,14 @@ public class RecipeEntity {
 
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+	
+	public CookEntity getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(CookEntity author) {
+		this.author = author;
 	}
 
 	public List<RecipeIngredientRatioEntity> getRecipeIngredientRatios() {
