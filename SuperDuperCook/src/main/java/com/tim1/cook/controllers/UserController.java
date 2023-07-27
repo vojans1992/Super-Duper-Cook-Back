@@ -43,7 +43,7 @@ public class UserController {
 	
 	
 	//@Secured("ROLE_ADMIN")
-	@RequestMapping(method = RequestMethod.POST, value = "/")	
+	@RequestMapping(method = RequestMethod.POST)	
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserEntity newuser) {
 		logger.info("/api/v1/users/createUser started.");
 		try {	
@@ -59,7 +59,7 @@ public class UserController {
 
 	//@Secured("ROLE_ADMIN")
 	//@JsonView(Views.Admin.class)
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserEntity>> getAllUsers() {
 		logger.info("/api/v1/users/getAllUsers started.");
 		logger.info("Finished OK.");

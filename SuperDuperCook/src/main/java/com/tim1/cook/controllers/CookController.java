@@ -44,7 +44,7 @@ public class CookController {
 	
 	
 	//@Secured("ROLE_ADMIN")
-	@RequestMapping(method = RequestMethod.POST, value = "/")	
+	@RequestMapping(method = RequestMethod.POST)	
 	public ResponseEntity<?> createCook(@Valid @RequestBody CookEntity newcook) {
 		logger.info("/api/v1/cook/createCook started.");
 		try {	
@@ -60,7 +60,7 @@ public class CookController {
 
 	//@Secured("ROLE_ADMIN")
 	//@JsonView(Views.Admin.class)
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserEntity>> getAllCooks() {
 		logger.info("/api/v1/cook/getAllCooks started.");
 		logger.info("Finished OK.");

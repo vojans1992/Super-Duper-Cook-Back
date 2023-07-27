@@ -31,7 +31,7 @@ public class RoleController {
 	
 	//@Secured("ROLE_ADMIN")
 	//@JsonView(Views.Admin.class)
-	@RequestMapping(method = RequestMethod.POST, value ="/") 
+	@RequestMapping(method = RequestMethod.POST) 
 	public ResponseEntity<?> createRole(@RequestBody RoleEntity newRole) {
 		logger.info("/api/v1/createRole started.");
 		RoleEntity role = roleService.createRole(newRole);
@@ -41,7 +41,7 @@ public class RoleController {
 	
 	//@Secured("ROLE_ADMIN")
 	//@JsonView(Views.Admin.class)
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<RoleEntity>> getAllRoles() {
 		logger.info("/api/v1/getAllRoles started.");
 		logger.info("Finished OK.");
