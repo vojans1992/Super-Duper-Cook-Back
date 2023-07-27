@@ -6,8 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.tim1.cook.entities.AllergenEntity;
 import com.tim1.cook.entities.IngredientEntity;
+import com.tim1.cook.entities.dto.IngredientDTO;
+import com.tim1.cook.repositories.AllergenRepository;
+import com.tim1.cook.repositories.IngredientRepository;
 import com.tim1.cook.service.IngredientService;
+import com.tim1.cook.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1/ingredients")
@@ -19,6 +25,10 @@ public class IngredientController {
     public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
+    @Autowired
+	private AllergenRepository allergenRepository;
+    @Autowired
+   	private IngredientRepository ingredientRepository;
 
     @PostMapping
     public ResponseEntity<IngredientEntity> createIngredient(@RequestBody IngredientEntity ingredient) {
@@ -70,5 +80,32 @@ public class IngredientController {
         return ResponseEntity.ok(updatedIngredientEntity);
     }
    
+    @RequestMapping(method=RequestMethod.POST, value = "/new")
+    public IngredientDTO newIngredient(@RequestBody IngredientDTO dto) {
+    	IngredientEntity in = new IngredientEntity();
+    	in.setName(dto.getName());
+    	in.setMeasurementUnit(dto.getMeasurementUnit());
+    	in.setCalories(dto.getCalories());
+    	in.setCarboHydrate(dto.getCarboHydrate());
+    	in.setSugar(dto.getSugar());
+    	in.setFat(dto.getFat());
+    	in.setSaturatedFat(dto.getSaturatedFat());
+    	in.setProtein(dto.getProtein());
+    	for(String a : dto.getAllergens()) {
+    		List<AllergenEntity> la = allergenRepository.findByName(a);
+    		if(la.isEmpty()) {
+    			AllergenEntity na = new AllergenEntity();
+    			na.setName(a);
+    			na.setIcon(a);
+    			allergenRepository.save(na);
+    			in.getAllergens().add(na);
+    		}else {
+    			in.getAllergens().add(la.get(0));
+    		}
+    	}
+		ingredientRepository.save(in);
+    	return new IngredientDTO();
+    	
+    }
 
 }
