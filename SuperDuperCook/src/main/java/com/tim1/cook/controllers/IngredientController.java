@@ -17,6 +17,7 @@ import com.tim1.cook.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1/ingredients")
+@CrossOrigin(origins = "http://localhost:3000")
 public class IngredientController {
 
     private final IngredientService ingredientService;
@@ -30,12 +31,14 @@ public class IngredientController {
     @Autowired
    	private IngredientRepository ingredientRepository;
 
-    @PostMapping
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping   
     public ResponseEntity<IngredientEntity> createIngredient(@RequestBody IngredientEntity ingredient) {
         IngredientEntity savedIngredient = ingredientService.saveIngredient(ingredient);
         return ResponseEntity.ok(savedIngredient);
     }
-
+    
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public ResponseEntity<IngredientEntity> getIngredient(@PathVariable Integer id) {
         IngredientEntity ingredient = ingredientService.getIngredientById(id);
@@ -44,12 +47,15 @@ public class IngredientController {
         }
         return ResponseEntity.ok(ingredient);
     }
+    
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<IngredientEntity>>getAllIngredients(){
     	List<IngredientEntity> ingredients = ingredientService.getAllIngredients();
     	return ResponseEntity.ok(ingredients);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteIngredient(@PathVariable Integer id) {
         IngredientEntity ingredient = ingredientService.getIngredientById(id);
@@ -59,7 +65,9 @@ public class IngredientController {
         ingredientService.deleteIngredientById(id);
         return ResponseEntity.noContent().build();
     }
-    @PutMapping("/{id}")
+    
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/{id}")    
     public ResponseEntity<IngredientEntity> updateIngredient(@PathVariable Integer id, @RequestBody IngredientEntity updatedIngredient) {
         IngredientEntity existingIngredient = ingredientService.getIngredientById(id);
         if (existingIngredient == null) {
@@ -80,6 +88,7 @@ public class IngredientController {
         return ResponseEntity.ok(updatedIngredientEntity);
     }
    
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method=RequestMethod.POST, value = "/new")
     public IngredientDTO newIngredient(@RequestBody IngredientDTO dto) {
     	IngredientEntity in = new IngredientEntity();
