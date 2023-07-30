@@ -37,7 +37,7 @@ public class IngredientEntity {
     private double protein;
     
     
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(
     		name = "ingredient_allergen",
     		joinColumns = @JoinColumn(name = "ingredient_id"),

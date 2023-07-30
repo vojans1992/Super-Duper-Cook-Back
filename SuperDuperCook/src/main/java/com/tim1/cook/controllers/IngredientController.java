@@ -2,8 +2,10 @@ package com.tim1.cook.controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -116,5 +118,38 @@ public class IngredientController {
     	return new IngredientDTO();
     	
     }
+    
+    @RequestMapping(method=RequestMethod.PUT, value="/dto/{id}")
+	public ResponseEntity<IngredientDTO> updateIngredientDTO(@PathVariable Integer id, @RequestBody IngredientDTO dto) {
+		Optional<IngredientEntity> o = ingredientRepository.findById(id);
+		if(o.isPresent()){
+			IngredientEntity in = o.get();
+			in.setName(dto.getName());
+	    	in.setMeasurementUnit(dto.getMeasurementUnit());
+	    	in.setCalories(dto.getCalories());
+	    	in.setCarboHydrate(dto.getCarboHydrate());
+	    	in.setSugar(dto.getSugar());
+	    	in.setFat(dto.getFat());
+	    	in.setSaturatedFat(dto.getSaturatedFat());
+	    	in.setProtein(dto.getProtein());
+			
+			in.getAllergens().clear();
+			for(String a : dto.getAllergens()) {
+				List<AllergenEntity> la = allergenRepository.findByName(a);
+				if(la.isEmpty()) {
+					AllergenEntity na = new AllergenEntity();
+					na.setName(a);
+					allergenRepository.save(na);
+					in.getAllergens().add(na);
+				}else {
+					in.getAllergens().add(la.get(0));
+				}
+			}
+			ingredientRepository.save(in);		
+			return new ResponseEntity<IngredientDTO>(new IngredientDTO(), HttpStatus.OK);
+		}else{
+			return new ResponseEntity<IngredientDTO>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 }
