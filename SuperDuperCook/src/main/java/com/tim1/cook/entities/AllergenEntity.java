@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -36,11 +37,11 @@ public class AllergenEntity {
 	@Version 
 	private Integer version;
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy =  "allergens")
 	List<IngredientEntity> ingredients= new ArrayList<IngredientEntity>();
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy =  "allergens")
 	List<UserEntity> users= new ArrayList<UserEntity>();
 	
