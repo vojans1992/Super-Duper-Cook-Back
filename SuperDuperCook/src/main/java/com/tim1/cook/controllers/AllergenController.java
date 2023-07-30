@@ -15,6 +15,7 @@ import com.tim1.cook.entities.AllergenEntity;
 import com.tim1.cook.service.AllergenService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/allergen")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AllergenController {
