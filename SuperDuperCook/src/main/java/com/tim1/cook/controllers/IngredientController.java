@@ -21,14 +21,12 @@ public class IngredientController {
 		this.ingredientService = ingredientService;
 	}	
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping
 	public ResponseEntity<IngredientEntity> createIngredient(@RequestBody IngredientEntity ingredient) {
 		IngredientEntity savedIngredient = ingredientService.saveIngredient(ingredient);
 		return ResponseEntity.ok(savedIngredient);
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}")
 	public ResponseEntity<IngredientEntity> getIngredient(@PathVariable Integer id) {
 		IngredientEntity ingredient = ingredientService.getIngredientById(id);
@@ -38,14 +36,12 @@ public class IngredientController {
 		return ResponseEntity.ok(ingredient);
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
 	public ResponseEntity<List<IngredientEntity>> getAllIngredients() {
 		List<IngredientEntity> ingredients = ingredientService.getAllIngredients();
 		return ResponseEntity.ok(ingredients);
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteIngredient(@PathVariable Integer id) {
 		IngredientEntity ingredient = ingredientService.getIngredientById(id);

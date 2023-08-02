@@ -45,8 +45,6 @@ public class UserController {
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	// da li prvo user sa tim usernmamemom postoji, ako ga nema onda moze da ga
-	// kreira
 	// @Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserEntity newUser) {
@@ -83,7 +81,6 @@ public class UserController {
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
-	// Azuriranje korisnika
 	// @Secured("ROLE_ADMIN")
 	// @JsonView(Views.Admin.class)
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
@@ -122,25 +119,24 @@ public class UserController {
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
-	// Dodavanje uloge useru
 	// @Secured("ROLE_ADMIN")
 	// @JsonView(Views.Admin.class)
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/addrole")
 	public ResponseEntity<?> addRoleToUser(@PathVariable Integer id, @RequestParam Integer roleId) {
-	    logger.info("/api/v1/users/addRoleToUser started.");
+		logger.info("/api/v1/users/addRoleToUser started.");
 
-	    try {
-	        UserEntity user = userService.addRoleToUser(id, roleId);
-	        logger.info("User found and role added successfully.");
-	        userRepository.save(user);
-	        return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
-	    } catch (NoSuchElementException e) {
-	        logger.error("Exception occurred: " + e.getMessage());
-	        return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.NOT_FOUND);
-	    } catch (IllegalArgumentException e) {
-	        logger.error("Exception occurred: " + e.getMessage());
-	        return new ResponseEntity<RESTError>(new RESTError(2, e.getMessage()), HttpStatus.BAD_REQUEST);
-	    }
+		try {
+			UserEntity user = userService.addRoleToUser(id, roleId);
+			logger.info("User found and role added successfully.");
+			userRepository.save(user);
+			return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			logger.error("Exception occurred: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (IllegalArgumentException e) {
+			logger.error("Exception occurred: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(2, e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

@@ -1,4 +1,5 @@
 package com.tim1.cook.service;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,26 +38,26 @@ public class IngredientServiceImpl implements IngredientService {
 	public List<IngredientEntity> getAllIngredients() {
 		return (List<IngredientEntity>) ingredientRepository.findAll();
 	}
-	
+
 	@Override
 	public IngredientEntity updateIngredient(Integer id, IngredientEntity updatedIngredient) {
-        IngredientEntity existingIngredient = ingredientRepository.findById(id).orElse(null);
-        if (existingIngredient == null) {
-            return null; 
-        }
+		IngredientEntity existingIngredient = ingredientRepository.findById(id).orElse(null);
+		if (existingIngredient == null) {
+			return null;
+		}
 
-        existingIngredient.setName(updatedIngredient.getName());
-        existingIngredient.setMeasurementUnit(updatedIngredient.getMeasurementUnit());
-        existingIngredient.setCalories(updatedIngredient.getCalories());
-        existingIngredient.setCarboHydrate(updatedIngredient.getCarboHydrate());
-        existingIngredient.setSugar(updatedIngredient.getSugar());
-        existingIngredient.setFat(updatedIngredient.getFat());
-        existingIngredient.setSaturatedFat(updatedIngredient.getSaturatedFat());
-        existingIngredient.setProtein(updatedIngredient.getProtein());
-        existingIngredient.setAllergens(updatedIngredient.getAllergens());
+		existingIngredient.setName(updatedIngredient.getName());
+		existingIngredient.setMeasurementUnit(updatedIngredient.getMeasurementUnit());
+		existingIngredient.setCalories(updatedIngredient.getCalories());
+		existingIngredient.setCarboHydrate(updatedIngredient.getCarboHydrate());
+		existingIngredient.setSugar(updatedIngredient.getSugar());
+		existingIngredient.setFat(updatedIngredient.getFat());
+		existingIngredient.setSaturatedFat(updatedIngredient.getSaturatedFat());
+		existingIngredient.setProtein(updatedIngredient.getProtein());
+		existingIngredient.setAllergens(updatedIngredient.getAllergens());
 
-        return ingredientRepository.save(existingIngredient);
-    }
+		return ingredientRepository.save(existingIngredient);
+	}
 
 	@Override
 	public IngredientDTO createNewIngredient(IngredientDTO dto) {

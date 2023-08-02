@@ -90,7 +90,6 @@ public class AdminController {
 		return existingAdmin == null || existingAdmin.getId().equals(id);
 	}
 
-	// Azuriranje admina
 	// @Secured("ROLE_ADMIN")
 	// @JsonView(Views.Admin.class)
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
@@ -113,7 +112,6 @@ public class AdminController {
 		return new ResponseEntity<AdminEntity>(admin, HttpStatus.CREATED);
 	}
 
-	// Brisanje admina
 	// @Secured("ROLE_ADMIN")
 	// @JsonView(Views.Admin.class)
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
