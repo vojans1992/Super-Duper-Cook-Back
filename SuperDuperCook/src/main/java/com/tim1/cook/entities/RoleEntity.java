@@ -2,7 +2,6 @@ package com.tim1.cook.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,14 +18,13 @@ import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "role")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class RoleEntity {
 
 	@Id
@@ -40,48 +38,51 @@ public class RoleEntity {
 	@JsonIgnore
 	@Version
 	private Integer version;
-	
-	
+
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JsonIgnore
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<UserEntity> users = new ArrayList<>();
-
 
 	public RoleEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Integer getId() {
 		return Id;
 	}
+
 	public void setId(Integer id) {
 		Id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Integer getVersion() {
 		return version;
 	}
+
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+
 	public List<UserEntity> getUsers() {
 		return users;
 	}
+
 	public void setUsers(List<UserEntity> users) {
 		this.users = users;
 	}
 
-
 	public void setDeleted(boolean b) {
 		// TODO Auto-generated method stub
-		
-	}		
+
+	}
 }

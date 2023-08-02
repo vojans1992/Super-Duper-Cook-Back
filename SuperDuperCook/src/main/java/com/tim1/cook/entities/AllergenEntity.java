@@ -26,6 +26,9 @@ public class AllergenEntity {
 	@Column(name= "allergen_id")
 	private Integer id;
 	
+	@Version 
+	private Integer version;
+		
 	@NotNull(message = "Allergen name must be provided.")
 	@Column(name= "allergen_name")
 	private String name;
@@ -33,9 +36,6 @@ public class AllergenEntity {
 	@NotNull(message = "Allergen icon must be provided.")
 	@Column(name="allergen_icon")
 	private String icon;
-	
-	@Version 
-	private Integer version;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy =  "allergens")

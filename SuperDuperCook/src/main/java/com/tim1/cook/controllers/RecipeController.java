@@ -37,7 +37,7 @@ public class RecipeController {
 	@Autowired RecipeService recipeService;
 	@Autowired RecipeRepository recipeRepository;
 	
-	private final Logger logger= (Logger) LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -80,7 +80,6 @@ public class RecipeController {
 					HttpStatus.NOT_FOUND);
 		}
 	}
-
 	
 	@ResponseStatus(code=HttpStatus.BAD_REQUEST)  
 	@ExceptionHandler(MethodArgumentNotValidException.class)
