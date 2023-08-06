@@ -44,6 +44,15 @@ public class RecipeEntity {
 	@NotNull(message = "Quantity must be provided.")
 	private String quantity;
 	
+	private String imageUrl;
+	
+	private double calories;
+    private double carboHydrate;
+    private double sugar;
+    private double fat;
+    private double saturatedFat;
+    private double protein;
+	
 	@NotNull(message = "Recipe must have an author.")
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name= "author", nullable = false)
@@ -120,6 +129,62 @@ public class RecipeEntity {
 
 	public void setRecipeIngredientRatios(List<RecipeIngredientRatioEntity> recipeIngredientRatios) {
 		this.recipeIngredientRatios = recipeIngredientRatios;
+	}
+
+	public double getCalories() {
+		return calories;
+	}
+
+	public void setCalories(double calories) {
+		this.calories = calories;
+	}
+
+	public double getCarboHydrate() {
+		return carboHydrate;
+	}
+
+	public void setCarboHydrate(double carboHydrate) {
+		this.carboHydrate = carboHydrate;
+	}
+
+	public double getSugar() {
+		return sugar;
+	}
+
+	public void setSugar(double sugar) {
+		this.sugar = sugar;
+	}
+
+	public double getFat() {
+		return fat;
+	}
+
+	public void setFat(double fat) {
+		this.fat = fat;
+	}
+
+	public double getSaturatedFat() {
+		return saturatedFat;
+	}
+
+	public void setSaturatedFat(double saturatedFat) {
+		this.saturatedFat = saturatedFat;
+	}
+
+	public double getProtein() {
+		return protein;
+	}
+
+	public void setProtein(double protein) {
+		this.protein = protein;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	

@@ -33,11 +33,11 @@ public class RecipeIngredientRatioController {
 	
 	private final Logger logger= (Logger) LoggerFactory.getLogger(this.getClass());
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addNewRatio(@Valid @RequestBody RecipeIngredientRatioEntity newRatio) {
-		logger.info("/api/v1/ratios/addNewRatio started.");
-		return new ResponseEntity<>(service.save(newRatio.getRecipe().getId(), newRatio.getIngredient().getId(), newRatio.getAmount()), HttpStatus.OK);
-	}
+//	@RequestMapping(method = RequestMethod.POST)
+//	public ResponseEntity<?> addNewRatio(@Valid @RequestBody RecipeIngredientRatioEntity newRatio) {
+//		logger.info("/api/v1/ratios/addNewRatio started.");
+//		return new ResponseEntity<>(service.save(newRatio.getRecipe().getId(), newRatio.getIngredient().getId(), newRatio.getAmount()), HttpStatus.OK);
+//	}
 	
 	@RequestMapping
 	public ResponseEntity<?> getAllRatios() {
