@@ -1,5 +1,7 @@
 package com.tim1.cook.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,6 @@ import com.tim1.cook.repositories.RecipeIngredientRatioRepository;
 public class RecipeIngredientRatioServiceImpl implements RecipeIngredientRatioService{
 	
 	@Autowired RecipeIngredientRatioRepository repository;
-	@Autowired RecipeService recipeService;
 	@Autowired IngredientService ingredientService;
 	
 	@Override
@@ -32,15 +33,7 @@ public class RecipeIngredientRatioServiceImpl implements RecipeIngredientRatioSe
 	}
 
 	@Override
-	public RecipeIngredientRatioEntity save(int recipeId, int ingredientId, int amount) {
-		RecipeEntity recipe;
-		try {
-			recipe = recipeService.findById(recipeId);
-		} catch (ClassCastException e) {
-			throw new ClassCastException("Recipe with ID: " + recipeId + " is not a recipe entity.");
-		} catch (NoSuchElementException e) {
-			throw new NoSuchElementException(e.getMessage());
-		}
+	public RecipeIngredientRatioEntity save(RecipeEntity recipe, int ingredientId, int amount) {
 		
 		IngredientEntity ingredient;
 		try {
@@ -65,5 +58,12 @@ public class RecipeIngredientRatioServiceImpl implements RecipeIngredientRatioSe
 		RecipeIngredientRatioEntity entity = findById(recipeId, ingredientId);
 		repository.delete(entity);
 		return entity;
+	}
+
+	@Override
+	public List<RecipeIngredientRatioEntity> findByRecipeId(Integer id) {
+		ArrayList<RecipeIngredientRatioEntity> list = new ArrayList<RecipeIngredientRatioEntity>();
+		list = repository.findAllByRecipeId(id);
+		return list;
 	}
 }

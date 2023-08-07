@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tim1.cook.controllers.util.RESTError;
 import com.tim1.cook.entities.RecipeEntity;
+import com.tim1.cook.entities.dto.RecipeDTO;
 import com.tim1.cook.repositories.RecipeRepository;
 import com.tim1.cook.service.RecipeService;
 
@@ -42,7 +43,7 @@ public class RecipeController {
 	
 	@Secured({"ROLE_COOK", "ROLE_ADMIN"})
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addNewRecipe(@Valid @RequestBody RecipeEntity newRecipe) {
+	public ResponseEntity<?> addNewRecipe(@Valid @RequestBody RecipeDTO newRecipe) {
 		logger.info("/api/v1/recipes/newRecipe started.");
 		return new ResponseEntity<>(recipeService.saveRecipe(newRecipe), HttpStatus.OK);
 	}
@@ -66,7 +67,7 @@ public class RecipeController {
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateRecipe(@Valid @RequestBody RecipeEntity newRecipe, @PathVariable int id) {
+	public ResponseEntity<?> updateRecipe(@Valid @RequestBody RecipeDTO newRecipe, @PathVariable int id) {
 		logger.info("/api/v1/recipes/updateRecipe started.");
 		newRecipe.setId(id);
 		return addNewRecipe(newRecipe);
