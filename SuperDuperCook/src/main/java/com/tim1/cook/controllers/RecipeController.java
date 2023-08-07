@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -39,7 +40,7 @@ public class RecipeController {
 	
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 	
-	
+	@Secured({"ROLE_COOK", "ROLE_ADMIN"})
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> addNewRecipe(@Valid @RequestBody RecipeEntity newRecipe) {
 		logger.info("/api/v1/recipes/newRecipe started.");
@@ -63,6 +64,7 @@ public class RecipeController {
 		}
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateRecipe(@Valid @RequestBody RecipeEntity newRecipe, @PathVariable int id) {
 		logger.info("/api/v1/recipes/updateRecipe started.");
@@ -70,6 +72,7 @@ public class RecipeController {
 		return addNewRecipe(newRecipe);
 	}
 	
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteRecipe(@PathVariable int id) {
 		try {

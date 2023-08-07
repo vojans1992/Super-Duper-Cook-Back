@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -46,7 +47,7 @@ public class CookController {
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	// @Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createCook(@Valid @RequestBody CookEntity newCook) {
 		logger.info("/api/v1/cook/createCook started.");
@@ -73,8 +74,7 @@ public class CookController {
 		}
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserEntity>> getAllCooks() {
 		logger.info("/api/v1/cook/getAllCooks started.");
@@ -83,8 +83,7 @@ public class CookController {
 		return new ResponseEntity(cooks, HttpStatus.OK);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<?> updateCook(@PathVariable Integer id, @RequestBody CookEntity updatedCook) {
 		logger.info("/api/v1/cook/updateCook started.");
@@ -112,8 +111,7 @@ public class CookController {
 		}
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteCook(@PathVariable Integer id) {
 		logger.info("/api/v1/cook/deleteCook started.");

@@ -44,7 +44,7 @@ public class UserEntity {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "role")
 	private RoleEntity role;
-	
+
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "user_allergen", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "allergen_id"))
@@ -53,6 +53,18 @@ public class UserEntity {
 	public UserEntity() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public UserEntity(Integer id,
+			@NotNull(message = "Username must be provided.") @Size(min = 5, max = 20, message = "Username name must be between {min} and {max} characters long.") String username,
+			@NotNull(message = "Password must be provided.") @Size(min = 5, max = 20, message = "Password name must be between {min} and {max} characters long.") String password,
+			RoleEntity role, List<AllergenEntity> allergens) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.allergens = allergens;
 	}
 
 	public Integer getId() {

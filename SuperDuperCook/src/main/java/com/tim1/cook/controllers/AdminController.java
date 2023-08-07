@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -39,7 +40,7 @@ public class AdminController {
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	// @Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminEntity newAdmin) {
 		logger.info("/api/v1/admin/createAdmin started.");
@@ -66,8 +67,7 @@ public class AdminController {
 		}
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getAllAdmins() {
 		logger.info("/api/v1/admin/getAllAdmins started.");
@@ -90,8 +90,7 @@ public class AdminController {
 		return existingAdmin == null || existingAdmin.getId().equals(id);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<?> updateAdmin(@PathVariable Integer id, @RequestBody AdminEntity updatedAdmin) {
 		logger.info("/api/v1/admin/updateAdmin started.");
@@ -112,22 +111,21 @@ public class AdminController {
 		return new ResponseEntity<AdminEntity>(admin, HttpStatus.CREATED);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteAdmin(@PathVariable Integer id) {
-	    logger.info("/api/v1/admins/deleteAdmin started.");
+		logger.info("/api/v1/admins/deleteAdmin started.");
 
-	    Optional<AdminEntity> adminOptional = adminRepository.findById(id);
-	    if (adminOptional.isEmpty()) {
-	        logger.error("Admin with ID " + id + " not found.");
-	        return new ResponseEntity<RESTError>(new RESTError(404, "Admin not found"), HttpStatus.NOT_FOUND);
-	    }
+		Optional<AdminEntity> adminOptional = adminRepository.findById(id);
+		if (adminOptional.isEmpty()) {
+			logger.error("Admin with ID " + id + " not found.");
+			return new ResponseEntity<RESTError>(new RESTError(404, "Admin not found"), HttpStatus.NOT_FOUND);
+		}
 
-	    AdminEntity admin = adminOptional.get();
-	    adminRepository.delete(admin);
-	    logger.info("Admin with ID " + id + " deleted.");
-	    return new ResponseEntity<>(admin, HttpStatus.OK);
+		AdminEntity admin = adminOptional.get();
+		adminRepository.delete(admin);
+		logger.info("Admin with ID " + id + " deleted.");
+		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

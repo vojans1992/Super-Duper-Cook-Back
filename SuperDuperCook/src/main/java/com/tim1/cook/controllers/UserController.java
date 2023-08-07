@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -45,7 +46,7 @@ public class UserController {
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	// @Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserEntity newUser) {
 		logger.info("/api/v1/users/createUser started.");
@@ -71,8 +72,7 @@ public class UserController {
 		}
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserEntity>> getAllUsers() {
 		logger.info("/api/v1/users/getAllUsers started.");
@@ -81,8 +81,7 @@ public class UserController {
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserEntity updatedUser) {
 		logger.info("/api/v1/users/updateUser started.");
@@ -103,8 +102,7 @@ public class UserController {
 		return new ResponseEntity<UserEntity>(user, HttpStatus.CREATED);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
 		logger.info("/api/v1/user/deleteUser started.");
@@ -119,24 +117,15 @@ public class UserController {
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
-	// @Secured("ROLE_ADMIN")
-	// @JsonView(Views.Admin.class)
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}/addrole")
-	public ResponseEntity<?> addRoleToUser(@PathVariable Integer id, @RequestParam Integer roleId) {
-		logger.info("/api/v1/users/addRoleToUser started.");
-
-		try {
-			UserEntity user = userService.addRoleToUser(id, roleId);
-			logger.info("User found and role added successfully.");
-			userRepository.save(user);
-			return new ResponseEntity<UserEntity>(user, HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			logger.error("Exception occurred: " + e.getMessage());
-			return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.NOT_FOUND);
-		} catch (IllegalArgumentException e) {
-			logger.error("Exception occurred: " + e.getMessage());
-			return new ResponseEntity<RESTError>(new RESTError(2, e.getMessage()), HttpStatus.BAD_REQUEST);
-		}
+	public UserEntity addRoleToUser(@PathVariable Integer id, @RequestParam Integer roleId) {
+		logger.info("/dnevnik/users/addRoleToUser started.");
+		UserEntity user = userService.addRoleToUser(id, roleId);
+		logger.info("User found.");
+		userRepository.save(user);
+		logger.info("Finished OK.");
+		return user;
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
