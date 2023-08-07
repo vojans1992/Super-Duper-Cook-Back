@@ -58,12 +58,20 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 		entity.setRecipeIngredientRatios(createIngredientRatios(newRecipe.getIngredientIds(), repository.save(entity)));
 
+		calculateStats(entity);
+		
 		return repository.save(entity);
 	}
 	
 	public void calculateStats(RecipeEntity recipe) {
-		for (RecipeIngredientRatioEntity rire : recipe.getRecipeIngredientRatios()) {
-			recipe.setCalories(rire.getIngredient().getCalories() + recipe.getCalories());
+		ArrayList<RecipeIngredientRatioEntity> list = (ArrayList<RecipeIngredientRatioEntity>) recipeIngredientRatioService.findByRecipeId(recipe.getId());
+		for (RecipeIngredientRatioEntity rire : list) {
+			recipe.setCalories((rire.getIngredient().getCalories() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getCalories());
+			recipe.setCarboHydrate((rire.getIngredient().getCarboHydrate() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getCarboHydrate());
+			recipe.setFat((rire.getIngredient().getFat() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getFat());
+			recipe.setProtein((rire.getIngredient().getProtein() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getProtein());
+			recipe.setSaturatedFat((rire.getIngredient().getSaturatedFat() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getSaturatedFat());
+			recipe.setSugar((rire.getIngredient().getSugar() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getSugar());
 		}
 	}
 	

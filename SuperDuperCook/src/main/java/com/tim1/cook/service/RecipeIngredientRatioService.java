@@ -10,4 +10,6 @@ public interface RecipeIngredientRatioService {
 	RecipeIngredientRatioEntity findById(int recipeId, int ingredientId);
 
 	RecipeIngredientRatioEntity delete(int recipeId, int ingredientId);
+
+	Iterable<RecipeIngredientRatioEntity> findByRecipeId(Integer id);
 }

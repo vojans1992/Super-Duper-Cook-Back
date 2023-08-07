@@ -1,5 +1,7 @@
 package com.tim1.cook.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +58,12 @@ public class RecipeIngredientRatioServiceImpl implements RecipeIngredientRatioSe
 		RecipeIngredientRatioEntity entity = findById(recipeId, ingredientId);
 		repository.delete(entity);
 		return entity;
+	}
+
+	@Override
+	public List<RecipeIngredientRatioEntity> findByRecipeId(Integer id) {
+		ArrayList<RecipeIngredientRatioEntity> list = new ArrayList<RecipeIngredientRatioEntity>();
+		list = repository.findAllByRecipeId(id);
+		return list;
 	}
 }
