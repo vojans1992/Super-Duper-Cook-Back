@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.tim1.cook.entities.RoleEntity;
+
 public class UserDTO {
 
 	@NotNull(message = "Username must be provided.")
@@ -18,6 +20,7 @@ public class UserDTO {
 	@Size(min = 5, max = 20, message = "Password name must be between {min} and {max} characters long.")
 	private String repeatedPassword;
 	private String token;
+	private RoleEntity role;
 
 	public UserDTO() {
 		super();
@@ -54,6 +57,14 @@ public class UserDTO {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public RoleEntity getRole() {
+		return role;
+	}
+
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 
 }

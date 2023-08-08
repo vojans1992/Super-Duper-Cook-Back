@@ -1,10 +1,8 @@
 package com.tim1.cook.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
+import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +23,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.tim1.cook.controllers.util.RESTError;
 import com.tim1.cook.entities.AdminEntity;
-import com.tim1.cook.repositories.AdminRepository;
 import com.tim1.cook.service.AdminService;
+import com.tim1.cook.service.AdminServiceImpl.AdminNotFoundException;
+import com.tim1.cook.service.AdminServiceImpl.NonUniqueUsernameException;
 
 @RestController
 @RequestMapping(value = "/api/v1/admin")
@@ -34,33 +33,22 @@ import com.tim1.cook.service.AdminService;
 public class AdminController {
 
 	@Autowired
-	private AdminRepository adminRepository;
-	@Autowired
 	private AdminService adminService;
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminEntity newAdmin) {
-		logger.info("/api/v1/admin/createAdmin started.");
-
-		if (newAdmin.getUsername() == null || newAdmin.getUsername().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (newAdmin.getPassword() == null || newAdmin.getPassword().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (adminRepository.existsByUsername(newAdmin.getUsername())) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminEntity admin) {
+		logger.info("/api/v1/admins/createAdmin started.");
 
 		try {
-			AdminEntity admin = adminService.createAdmin(newAdmin);
-			logger.info("Finished OK.");
-			return new ResponseEntity<>(admin, HttpStatus.CREATED);
+			AdminEntity newAdmin = adminService.createAdmin(admin);
+			logger.info("Admin created successfully.");
+			return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
+		} catch (IllegalArgumentException e) {
+			logger.error("IllegalArgumentException occurred: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(3, e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			logger.error("Exception occurred: " + e.getMessage());
 			return new ResponseEntity<RESTError>(new RESTError(4, "Failed to create admin"), HttpStatus.BAD_REQUEST);
@@ -70,45 +58,42 @@ public class AdminController {
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getAllAdmins() {
-		logger.info("/api/v1/admin/getAllAdmins started.");
+		logger.info("/api/v1/admins/getAllAdmins started.");
 
-		Iterable<AdminEntity> admins = adminRepository.findAll();
-		for (AdminEntity admin : admins) {
-			if (!isUsernameUnique(admin.getUsername(), admin.getId())) {
-				logger.error("Non-unique username found: " + admin.getUsername());
-				return new ResponseEntity<RESTError>(
-						new RESTError(1, "Non-unique username found: " + admin.getUsername()), HttpStatus.BAD_REQUEST);
-			}
+		try {
+			Iterable<AdminEntity> admins = adminService.getAllAdmins();
+			logger.info("Finished OK.");
+			return new ResponseEntity<>(admins, HttpStatus.OK);
+		} catch (NonUniqueUsernameException e) {
+			logger.error("Non-unique username found: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while retrieving admins: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to retrieve admins"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		logger.info("Finished OK.");
-		return new ResponseEntity<AdminEntity>(HttpStatus.OK);
-	}
-
-	private boolean isUsernameUnique(String username, Integer id) {
-		AdminEntity existingAdmin = adminRepository.findByUsername(username);
-		return existingAdmin == null || existingAdmin.getId().equals(id);
 	}
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<?> updateAdmin(@PathVariable Integer id, @RequestBody AdminEntity updatedAdmin) {
-		logger.info("/api/v1/admin/updateAdmin started.");
+		logger.info("/api/v1/admins/updateAdmin started.");
 
-		if (updatedAdmin.getUsername() == null || updatedAdmin.getUsername().equals("")) {
-			logger.info("Username is null.");
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
+		try {
+			AdminEntity admin = adminService.updateAdmin(id, updatedAdmin);
+			logger.info("/api/v1/admins/updateAdmin finished.");
+			return new ResponseEntity<>(admin, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			logger.error("Admin with ID " + id + " not found.");
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (IllegalArgumentException e) {
+			logger.error("Failed to update admin: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(400, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while updating admin: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to update admin"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		if (updatedAdmin.getPassword() == null || updatedAdmin.getPassword().equals("")) {
-			logger.info("Password is null.");
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-		if (adminRepository.existsByUsernameAndIdNot(updatedAdmin.getUsername(), id)) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
-		AdminEntity admin = adminService.updateAdmin(id, updatedAdmin);
-		logger.info("/api/v1/admin/updateAdmin finished.");
-		return new ResponseEntity<AdminEntity>(admin, HttpStatus.CREATED);
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -116,16 +101,18 @@ public class AdminController {
 	public ResponseEntity<?> deleteAdmin(@PathVariable Integer id) {
 		logger.info("/api/v1/admins/deleteAdmin started.");
 
-		Optional<AdminEntity> adminOptional = adminRepository.findById(id);
-		if (adminOptional.isEmpty()) {
+		try {
+			adminService.deleteAdmin(id);
+			logger.info("Admin with ID " + id + " deleted.");
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (AdminNotFoundException e) {
 			logger.error("Admin with ID " + id + " not found.");
-			return new ResponseEntity<RESTError>(new RESTError(404, "Admin not found"), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			logger.error("Exception occurred while deleting admin: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to delete admin"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		AdminEntity admin = adminOptional.get();
-		adminRepository.delete(admin);
-		logger.info("Admin with ID " + id + " deleted.");
-		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

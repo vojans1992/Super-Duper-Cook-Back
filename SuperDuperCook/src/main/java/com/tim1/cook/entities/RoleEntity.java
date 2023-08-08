@@ -85,4 +85,9 @@ public class RoleEntity {
 		// TODO Auto-generated method stub
 
 	}
+
+	public void add(RoleEntity role) {
+		// TODO Auto-generated method stub
+		
+	}
 }

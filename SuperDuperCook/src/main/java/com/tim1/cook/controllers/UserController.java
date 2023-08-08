@@ -1,11 +1,8 @@
 package com.tim1.cook.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.tim1.cook.controllers.util.RESTError;
 import com.tim1.cook.entities.UserEntity;
-import com.tim1.cook.repositories.RoleRepository;
+import com.tim1.cook.entities.dto.UserDTO;
 import com.tim1.cook.repositories.UserRepository;
 import com.tim1.cook.service.UserService;
+import com.tim1.cook.service.UserServiceImpl.NonUniqueUsernameException;
+import com.tim1.cook.service.UserServiceImpl.UserNotFoundException;
 
 @RestController
 @RequestMapping(value = "/api/v1/users")
@@ -41,8 +39,6 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private RoleRepository roleRepository;
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
@@ -50,22 +46,14 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserEntity newUser) {
 		logger.info("/api/v1/users/createUser started.");
-		if (newUser.getUsername() == null || newUser.getUsername().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (newUser.getPassword() == null || newUser.getPassword().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (userRepository.existsByUsername(newUser.getUsername())) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
 
 		try {
 			UserEntity user = userService.createUser(newUser);
-			logger.info("Finished OK.");
-			return new ResponseEntity<>(user, HttpStatus.CREATED);
+			logger.info("User created successfully.");
+			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+		} catch (IllegalArgumentException e) {
+			logger.error("IllegalArgumentException occurred: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(3, e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			logger.error("Exception occurred: " + e.getMessage());
 			return new ResponseEntity<RESTError>(new RESTError(4, "Failed to create user"), HttpStatus.BAD_REQUEST);
@@ -74,11 +62,20 @@ public class UserController {
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<UserEntity>> getAllUsers() {
+	public ResponseEntity<?> getAllUsers() {
 		logger.info("/api/v1/users/getAllUsers started.");
-		List<UserEntity> users = userRepository.findAll();
-		logger.info("Finished OK.");
-		return new ResponseEntity<>(users, HttpStatus.OK);
+		try {
+			Iterable<UserEntity> users = userService.getAllUsers();
+			logger.info("Finished OK.");
+			return new ResponseEntity<>(users, HttpStatus.OK);
+		} catch (NonUniqueUsernameException e) {
+			logger.error("Non-unique username found: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while retrieving admins: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to retrieve user"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -86,35 +83,40 @@ public class UserController {
 	public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserEntity updatedUser) {
 		logger.info("/api/v1/users/updateUser started.");
 
-		if (updatedUser.getUsername() == null || updatedUser.getUsername().equals("")) {
-			logger.info("Username is null.");
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
+		try {
+			UserEntity user = userService.updateUser(id, updatedUser);
+			logger.info("/api/v1/admins/updateUser finished.");
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			logger.error("User with ID " + id + " not found.");
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (IllegalArgumentException e) {
+			logger.error("Failed to update user: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(400, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while updating user: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to update user"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		if (updatedUser.getPassword() == null || updatedUser.getPassword().equals("")) {
-			logger.info("Password is null.");
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-		if (userRepository.existsByUsernameAndIdNot(updatedUser.getUsername(), id)) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
-		UserEntity user = userService.updateUser(id, updatedUser);
-		logger.info("/api/v1/user/updateUser finished.");
-		return new ResponseEntity<UserEntity>(user, HttpStatus.CREATED);
 	}
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
 		logger.info("/api/v1/user/deleteUser started.");
-		Optional<UserEntity> userOptional = userRepository.findById(id);
-		if (userOptional.isEmpty()) {
+
+		try {
+			userService.deleteUser(id);
+			logger.info("User with ID " + id + " deleted.");
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (UserNotFoundException e) {
 			logger.error("User with ID " + id + " not found.");
-			return new ResponseEntity<RESTError>(new RESTError(404, "User not found"), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			logger.error("Exception occurred while deleting user: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to delete user"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		UserEntity user = userOptional.get();
-		userRepository.delete(user);
-		logger.info("User with ID " + id + " deleted.");
-		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -126,6 +128,22 @@ public class UserController {
 		userRepository.save(user);
 		logger.info("Finished OK.");
 		return user;
+	}
+
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(method = RequestMethod.PUT, value = "/dto/{id}")
+	public ResponseEntity<UserDTO> updateUserDTO(@PathVariable Integer id, @RequestBody UserDTO dto) {
+		logger.info("/api/v1/admin/updateserDTO started.");
+		UserDTO updatedDto = userService.updateUserDTO(id, dto);
+		if (updatedDto != null) {
+			logger.info("User is not null.");
+			logger.info("/api/v1/admin/updateUserDTO finished successfully.");
+			return new ResponseEntity<>(updatedDto, HttpStatus.OK);
+		} else {
+			logger.info("User is null.");
+			logger.info("/api/v1/admin/updateUserDTO finished with HttpStatus.NOT_FOUND.");
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

@@ -8,4 +8,6 @@ public interface CookRepository extends CrudRepository <CookEntity, Integer>{
 	boolean existsByUsername(String username);
 
 	boolean existsByUsernameAndIdNot(String username, Integer id);
+
+	CookEntity findByUsername(String username);
 }

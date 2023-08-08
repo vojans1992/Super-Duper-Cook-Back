@@ -1,11 +1,8 @@
 package com.tim1.cook.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,26 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.tim1.cook.controllers.util.RESTError;
 import com.tim1.cook.entities.CookEntity;
-import com.tim1.cook.entities.UserEntity;
-import com.tim1.cook.repositories.CookRepository;
-import com.tim1.cook.repositories.RoleRepository;
-import com.tim1.cook.repositories.UserRepository;
+import com.tim1.cook.service.AdminServiceImpl.NonUniqueUsernameException;
 import com.tim1.cook.service.CookService;
-import com.tim1.cook.service.UserService;
+import com.tim1.cook.service.CookServiceImpl.CookNotFoundException;
 
 @RestController
 @RequestMapping(value = "/api/v1/cook")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CookController {
 
-	@Autowired
-	private CookRepository cookRepository;
 	@Autowired
 	private CookService cookService;
 
@@ -51,23 +41,13 @@ public class CookController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createCook(@Valid @RequestBody CookEntity newCook) {
 		logger.info("/api/v1/cook/createCook started.");
-
-		if (newCook.getUsername() == null || newCook.getUsername().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (newCook.getPassword() == null || newCook.getPassword().isEmpty()) {
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-
-		if (cookRepository.existsByUsername(newCook.getUsername())) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
-
 		try {
 			CookEntity cook = cookService.createCook(newCook);
-			logger.info("Finished OK.");
+			logger.info("Cook created successfully.");
 			return new ResponseEntity<>(cook, HttpStatus.CREATED);
+		} catch (IllegalArgumentException e) {
+			logger.error("IllegalArgumentException occurred: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(3, e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			logger.error("Exception occurred: " + e.getMessage());
 			return new ResponseEntity<RESTError>(new RESTError(4, "Failed to create cook"), HttpStatus.BAD_REQUEST);
@@ -76,11 +56,21 @@ public class CookController {
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<UserEntity>> getAllCooks() {
-		logger.info("/api/v1/cook/getAllCooks started.");
-		Iterable<CookEntity> cooks = cookRepository.findAll();
-		logger.info("Finished OK.");
-		return new ResponseEntity(cooks, HttpStatus.OK);
+	public ResponseEntity<?> getAllCooks() {
+		logger.info("/api/v1/admins/getAllCooks started.");
+
+		try {
+			Iterable<CookEntity> cooks = cookService.getAllCooks();
+			logger.info("Finished OK.");
+			return new ResponseEntity<>(cooks, HttpStatus.OK);
+		} catch (NonUniqueUsernameException e) {
+			logger.error("Non-unique username found: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(1, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while retrieving cooks: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to retrieve admins"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -88,26 +78,20 @@ public class CookController {
 	public ResponseEntity<?> updateCook(@PathVariable Integer id, @RequestBody CookEntity updatedCook) {
 		logger.info("/api/v1/cook/updateCook started.");
 
-		if (updatedCook.getUsername() == null || updatedCook.getUsername().equals("")) {
-			logger.info("Username is null.");
-			return new ResponseEntity<RESTError>(new RESTError(1, "Please provide a username"), HttpStatus.BAD_REQUEST);
-		}
-		if (updatedCook.getPassword() == null || updatedCook.getPassword().equals("")) {
-			logger.info("Password is null.");
-			return new ResponseEntity<RESTError>(new RESTError(2, "Please provide a password"), HttpStatus.BAD_REQUEST);
-		}
-		if (cookRepository.existsByUsernameAndIdNot(updatedCook.getUsername(), id)) {
-			return new ResponseEntity<RESTError>(new RESTError(3, "Username already exists"), HttpStatus.BAD_REQUEST);
-		}
-
 		try {
 			CookEntity cook = cookService.updateCook(id, updatedCook);
-			logger.info("Cook updated successfully.");
-			return new ResponseEntity<CookEntity>(cook, HttpStatus.CREATED);
+			logger.info("/api/v1/admins/updateAdmin finished.");
+			return new ResponseEntity<>(cook, HttpStatus.OK);
 		} catch (NoSuchElementException e) {
-			logger.error("Exception occurred: " + e.getMessage());
-			return new ResponseEntity<RESTError>(new RESTError(3, "Cook with ID: " + id + " not found."),
-					HttpStatus.NOT_FOUND);
+			logger.error("Cook with ID " + id + " not found.");
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (IllegalArgumentException e) {
+			logger.error("Failed to update cook: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(400, e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			logger.error("Exception occurred while updating cook: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to update cook"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -115,15 +99,19 @@ public class CookController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<?> deleteCook(@PathVariable Integer id) {
 		logger.info("/api/v1/cook/deleteCook started.");
-		Optional<CookEntity> cookOptional = cookRepository.findById(id);
-		if (cookOptional.isEmpty()) {
+
+		try {
+			cookService.deleteCook(id);
+			logger.info("Cook with ID " + id + " deleted.");
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (CookNotFoundException e) {
 			logger.error("Cook with ID " + id + " not found.");
-			return new ResponseEntity<RESTError>(new RESTError(404, "Cook not found"), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<RESTError>(new RESTError(404, e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			logger.error("Exception occurred while deleting cook: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to delete admin"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		CookEntity cook = cookOptional.get();
-		cookRepository.delete(cook);
-		logger.info("Cook with ID " + id + " deleted.");
-		return new ResponseEntity<>(cook, HttpStatus.OK);
 	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
