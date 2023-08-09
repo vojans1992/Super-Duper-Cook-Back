@@ -45,6 +45,16 @@ public class RecipeIngredientRatioController {
 		return new ResponseEntity<List<RecipeIngredientRatioEntity>>((List<RecipeIngredientRatioEntity>) repository.findAll(), HttpStatus.OK);
 	}
 	
+	@RequestMapping("/byRecipeId/{id}")
+	public ResponseEntity<?> getRatiosByRecipeId(@PathVariable int id) {
+		try {
+			return new ResponseEntity<>(service.findByRecipeId(id), HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<RESTError>(new RESTError(HttpStatus.NOT_FOUND.value(), e.getMessage()),
+					HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@RequestMapping("/{id}")
 	public ResponseEntity<?> getOne(@PathVariable int recipeId, @PathVariable int ingredientId) {
 		logger.info("/api/v1/ratios/getOne started.");
