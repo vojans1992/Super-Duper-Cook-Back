@@ -13,4 +13,6 @@ public interface CookService {
 	public CookEntity findCookById(Integer id);
 
 	public void deleteCook(Integer id);
+	
+	public CookEntity findCookByUsername(String username);
 }

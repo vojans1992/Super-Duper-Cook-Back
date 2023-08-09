@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
 	public UserEntity createUser(UserEntity newUser) {
 		String username = newUser.getUsername();
 		String password = newUser.getPassword();
+		RoleEntity role = roleRepository.findById(3).get();
 
 		if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
 			throw new IllegalArgumentException("Username and password are required fields.");
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
 		UserEntity user = new UserEntity();
 		user.setUsername(username);
 		user.setPassword(password);
+		user.setRole(role);
 
 		return userRepository.save(user);
 	}

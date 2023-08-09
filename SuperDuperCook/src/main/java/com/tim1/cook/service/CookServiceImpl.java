@@ -5,18 +5,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tim1.cook.entities.CookEntity;
+import com.tim1.cook.entities.RoleEntity;
 import com.tim1.cook.repositories.CookRepository;
+import com.tim1.cook.repositories.RoleRepository;
 
 @Service
 public class CookServiceImpl implements CookService {
 
 	@Autowired
 	private CookRepository cookRepository;
+	@Autowired private RoleRepository roleRepository;
 
 	@Override
 	public CookEntity createCook(CookEntity newCook) {
 		String username = newCook.getUsername();
 		String password = newCook.getPassword();
+		RoleEntity role = roleRepository.findById(2).get();
 
 		if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
 			throw new IllegalArgumentException("Username and password are required fields.");
@@ -29,6 +33,7 @@ public class CookServiceImpl implements CookService {
 		CookEntity cook = new CookEntity();
 		cook.setUsername(username);
 		cook.setPassword(password);
+		cook.setRole(role);
 
 		return cookRepository.save(cook);
 	}
@@ -91,6 +96,11 @@ public class CookServiceImpl implements CookService {
 
 		CookEntity admin = cookOptional.get();
 		cookRepository.delete(admin);
+	}
+
+	@Override
+	public CookEntity findCookByUsername(String username) {
+		return cookRepository.findByUsername(username);
 	}
 
 }

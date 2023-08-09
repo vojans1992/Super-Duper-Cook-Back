@@ -49,10 +49,10 @@ public class RecipeServiceImpl implements RecipeService {
 
 		CookEntity author;
 		try {
-			author = cookService.findCookById(newRecipe.getAuthorId());
+			author = cookService.findCookByUsername(newRecipe.getAuthorUsername());
 			entity.setAuthor(author);
 		} catch (ClassCastException e) {
-			throw new ClassCastException("Cook with ID: " + newRecipe.getAuthorId() + " is not a cook entity.");
+			throw new ClassCastException("Cook with ID: " + newRecipe.getAuthorUsername() + " is not a cook entity.");
 		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException(e.getMessage());
 		}

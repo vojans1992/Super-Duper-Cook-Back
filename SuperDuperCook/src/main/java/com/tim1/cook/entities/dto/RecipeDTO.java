@@ -22,7 +22,7 @@ public class RecipeDTO {
 	private String quantity;
 	
 	@NotNull(message = "Author must be provided.")
-	private int authorId;
+	private String authorUsername;
 	
 	@NotNull(message = "Ingredients must be provided.")
 	private IngredientIdRatioDTO[] ingredientIds;
@@ -82,12 +82,12 @@ public class RecipeDTO {
 		this.quantity = quantity;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public String getAuthorUsername() {
+		return authorUsername;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setAuthorUsername(String authorUsername) {
+		this.authorUsername = authorUsername;
 	}
 
 	public IngredientIdRatioDTO[] getIngredientIds() {
