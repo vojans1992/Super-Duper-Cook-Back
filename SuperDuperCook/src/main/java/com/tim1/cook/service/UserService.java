@@ -17,4 +17,5 @@ public interface UserService {
 
 	public UserDTO updateUserDTO(Integer id, UserDTO dto);
 
+	public UserEntity findByUsername(String username);
 }

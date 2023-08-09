@@ -10,4 +10,6 @@ import com.tim1.cook.entities.RecipeIngredientRatioKey;
 public interface RecipeIngredientRatioRepository extends CrudRepository<RecipeIngredientRatioEntity, RecipeIngredientRatioKey> {
 
 	ArrayList<RecipeIngredientRatioEntity> findAllByRecipeId(Integer recipeId);
+
+	void deleteAllByRecipeId(Integer id);
 }

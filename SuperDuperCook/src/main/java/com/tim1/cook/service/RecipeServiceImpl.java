@@ -7,12 +7,14 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tim1.cook.entities.CookEntity;
 import com.tim1.cook.entities.IngredientEntity;
 import com.tim1.cook.entities.RecipeEntity;
 import com.tim1.cook.entities.RecipeIngredientRatioEntity;
 import com.tim1.cook.entities.RecipeIngredientRatioKey;
+import com.tim1.cook.entities.UserEntity;
 import com.tim1.cook.entities.dto.IngredientIdRatioDTO;
 import com.tim1.cook.entities.dto.RecipeDTO;
 import com.tim1.cook.repositories.RecipeRepository;
@@ -28,6 +30,8 @@ public class RecipeServiceImpl implements RecipeService {
 	CookService cookService;
 	@Autowired
 	IngredientService ingredientService;
+	@Autowired
+	UserService userService;
 
 	@Override
 	public RecipeEntity saveRecipe(RecipeDTO newRecipe) {
@@ -74,7 +78,7 @@ public class RecipeServiceImpl implements RecipeService {
 			recipe.setSugar((rire.getIngredient().getSugar() * rire.getAmount() / Integer.parseInt(rire.getIngredient().getMeasurementUnit().split(" ")[0])) + recipe.getSugar());
 		}
 	}
-	
+	@Transactional
 	@Override
 	public ArrayList<RecipeIngredientRatioEntity> createIngredientRatios(IngredientIdRatioDTO[] ratiosDTO, RecipeEntity recipe) {
 		ArrayList<RecipeIngredientRatioEntity> ratios = new ArrayList<>();
@@ -101,8 +105,10 @@ public class RecipeServiceImpl implements RecipeService {
 		return ratios;
 	}
 
+	@Transactional
 	@Override
 	public String deleteById(Integer id) {
+		recipeIngredientRatioService.deleteAllByRecipeId(id);
 
 		try {
 			repository.deleteById(id);
@@ -121,6 +127,28 @@ public class RecipeServiceImpl implements RecipeService {
 		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException("Recipe with ID: " + id + " does not exist.");
 		}
+	}
+
+	@Override
+	public RecipeEntity addToFav(int recipeId, String username) {
+		UserEntity user = userService.findByUsername(username);
+		RecipeEntity recipe = repository.findById(recipeId).get();
+		
+		user.getRecipes().add(recipe);
+		userService.updateUser(user.getId(), user);
+		
+		return recipe;
+	}
+
+	@Override
+	public RecipeEntity removeAsFav(int recipeId, String username) {
+		UserEntity user = userService.findByUsername(username);
+		RecipeEntity recipe = repository.findById(recipeId).get();
+		
+		user.getRecipes().remove(recipe);
+		userService.updateUser(user.getId(), user);
+		
+		return recipe;
 	}
 
 }

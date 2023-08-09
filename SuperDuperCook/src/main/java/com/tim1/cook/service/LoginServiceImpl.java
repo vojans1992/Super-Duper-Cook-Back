@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
 
 		if (user != null && Encryption.validatePassword(password, user.getPassword())) {
 			String token = generateJWTToken(user);
-			return new LoginDTO(username, token);
+			return new LoginDTO(username, token, user.getRole().getName());
 		} else {
 			throw new Exception("Invalid username or password");
 		}

@@ -66,4 +66,10 @@ public class RecipeIngredientRatioServiceImpl implements RecipeIngredientRatioSe
 		list = repository.findAllByRecipeId(id);
 		return list;
 	}
+
+	@Override
+	public void deleteAllByRecipeId(Integer id) {
+		repository.deleteAllByRecipeId(id);
+		
+	}
 }

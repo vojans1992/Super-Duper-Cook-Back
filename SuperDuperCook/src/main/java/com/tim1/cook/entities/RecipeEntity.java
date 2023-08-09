@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -62,6 +63,10 @@ public class RecipeEntity {
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private List<RecipeIngredientRatioEntity> recipeIngredientRatios = new ArrayList<RecipeIngredientRatioEntity>();
 
+	@JsonIgnore
+	@ManyToMany(mappedBy =  "recipes")
+	List<UserEntity> users= new ArrayList<UserEntity>();
+	
 	public RecipeEntity() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -185,6 +190,14 @@ public class RecipeEntity {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<UserEntity> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserEntity> users) {
+		this.users = users;
 	}
 	
 	

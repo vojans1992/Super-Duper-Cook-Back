@@ -73,6 +73,8 @@ public class UserServiceImpl implements UserService {
 
 		user.setUsername(updatedUser.getUsername());
 		user.setPassword(updatedUser.getPassword());
+		user.setAllergens(updatedUser.getAllergens());
+		user.setRecipes(updatedUser.getRecipes());
 
 		return userRepository.save(user);
 	}
@@ -117,6 +119,11 @@ public class UserServiceImpl implements UserService {
 			userRepository.save(us);
 		}
 		return new UserDTO();
+	}
+
+	@Override
+	public UserEntity findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 }

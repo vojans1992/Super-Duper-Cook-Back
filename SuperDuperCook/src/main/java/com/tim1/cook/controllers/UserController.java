@@ -42,7 +42,7 @@ public class UserController {
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_COOK"})
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserEntity newUser) {
 		logger.info("/api/v1/users/createUser started.");
@@ -60,7 +60,7 @@ public class UserController {
 		}
 	}
 
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_COOK"})
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getAllUsers() {
 		logger.info("/api/v1/users/getAllUsers started.");

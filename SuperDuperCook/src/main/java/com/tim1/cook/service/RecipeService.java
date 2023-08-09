@@ -13,4 +13,6 @@ public interface RecipeService {
 	public String deleteById(Integer id);
 	public RecipeEntity findById(int id);
 	ArrayList<RecipeIngredientRatioEntity> createIngredientRatios(IngredientIdRatioDTO[] ratiosDTO, RecipeEntity recipe);
+	public RecipeEntity addToFav(int recipeId, String username);
+	public RecipeEntity removeAsFav(int recipeId, String username);
 }

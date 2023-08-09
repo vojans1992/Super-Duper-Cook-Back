@@ -40,6 +40,10 @@ public class UserEntity {
 	@NotNull(message = "Password must be provided.")
 	@Size(min = 5, max = 20, message = "Password name must be between {min} and {max} characters long.")
 	private String password;
+	
+	@ManyToMany
+	@JoinTable(name = "user_recipe", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+	private List<RecipeEntity> recipes = new ArrayList<RecipeEntity>();
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "role")
@@ -106,5 +110,15 @@ public class UserEntity {
 	public void setAllergens(List<AllergenEntity> allergens) {
 		this.allergens = allergens;
 	}
+
+	public List<RecipeEntity> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<RecipeEntity> recipes) {
+		this.recipes = recipes;
+	}
+	
+	
 
 }
