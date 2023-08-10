@@ -1,6 +1,7 @@
 package com.tim1.cook.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.tim1.cook.controllers.util.RESTError;
+import com.tim1.cook.entities.AllergenEntity;
 import com.tim1.cook.entities.UserEntity;
 import com.tim1.cook.entities.dto.UserDTO;
 import com.tim1.cook.repositories.UserRepository;
@@ -57,6 +59,19 @@ public class UserController {
 		} catch (Exception e) {
 			logger.error("Exception occurred: " + e.getMessage());
 			return new ResponseEntity<RESTError>(new RESTError(4, "Failed to create user"), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping("/{username}")
+	public ResponseEntity<?> getUserByUsername(@PathVariable String username){
+		try {
+			UserEntity user = userService.findByUsername(username);
+			logger.info("Finished OK.");
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Exception occurred while retrieving user: " + e.getMessage());
+			return new ResponseEntity<RESTError>(new RESTError(500, "Failed to retrieve user"),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -146,7 +161,17 @@ public class UserController {
 		}
 	}
 	
-	
+	@RequestMapping(method = RequestMethod.POST, value = "/{username}/allergens") 
+	public ResponseEntity<?> addAllergenToUser(@PathVariable String username, @RequestBody List<AllergenEntity> listOfAllergens) {
+		
+		UserEntity user = userService.addAllergenToUser(listOfAllergens, username);
+		if(user != null) {
+			return new ResponseEntity<>( user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RESTError>(new RESTError (HttpStatus.NOT_FOUND.value(), "No user found for passed ID"), HttpStatus.NOT_FOUND);
+		}
+		
+	}
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)

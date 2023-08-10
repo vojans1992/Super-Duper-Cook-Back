@@ -10,10 +10,10 @@ public class Encryption {
 	}
 
 	public static boolean validatePassword(String password, String encodedPassword) {
-		BCryptPasswordEncoder bce = new BCryptPasswordEncoder();
-		String replacedEncodedPassword = encodedPassword.replace("{bcrypt}", "");
-		return bce.matches(password, replacedEncodedPassword);
-	}
+        BCryptPasswordEncoder bce = new BCryptPasswordEncoder();
+        String replacedEncodedPassword = encodedPassword.replace("{bcrypt}", "");
+        return bce.matches(password, replacedEncodedPassword);
+    }
 
 	public static void main(String[] args) {
 

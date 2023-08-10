@@ -8,6 +8,7 @@ import com.tim1.cook.entities.CookEntity;
 import com.tim1.cook.entities.RoleEntity;
 import com.tim1.cook.repositories.CookRepository;
 import com.tim1.cook.repositories.RoleRepository;
+import com.tim1.cook.utils.Encryption;
 
 @Service
 public class CookServiceImpl implements CookService {
@@ -19,7 +20,7 @@ public class CookServiceImpl implements CookService {
 	@Override
 	public CookEntity createCook(CookEntity newCook) {
 		String username = newCook.getUsername();
-		String password = newCook.getPassword();
+		String password = Encryption.getEncodedPassword(newCook.getPassword());
 		RoleEntity role = roleRepository.findById(2).get();
 
 		if (username == null || username.isEmpty() || password == null || password.isEmpty()) {

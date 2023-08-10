@@ -1,5 +1,8 @@
 package com.tim1.cook.service;
 
+import java.util.List;
+
+import com.tim1.cook.entities.AllergenEntity;
 import com.tim1.cook.entities.UserEntity;
 import com.tim1.cook.entities.dto.UserDTO;
 
@@ -18,4 +21,6 @@ public interface UserService {
 	public UserDTO updateUserDTO(Integer id, UserDTO dto);
 
 	public UserEntity findByUsername(String username);
+
+	public UserEntity addAllergenToUser(List<AllergenEntity> listOfAllergens, String username);
 }

@@ -34,7 +34,8 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(this.secretKey), UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/login").permitAll().anyRequest()
+				.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/v1/recipe**").permitAll().anyRequest()
 				.authenticated();
 		return http.build();
 	}

@@ -1,14 +1,18 @@
 package com.tim1.cook.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tim1.cook.entities.AllergenEntity;
 import com.tim1.cook.entities.RoleEntity;
 import com.tim1.cook.entities.UserEntity;
 import com.tim1.cook.entities.dto.UserDTO;
 import com.tim1.cook.repositories.RoleRepository;
 import com.tim1.cook.repositories.UserRepository;
+import com.tim1.cook.utils.Encryption;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity createUser(UserEntity newUser) {
 		String username = newUser.getUsername();
-		String password = newUser.getPassword();
+		String password = Encryption.getEncodedPassword(newUser.getPassword());
 		RoleEntity role = roleRepository.findById(3).get();
 
 		if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
@@ -72,7 +76,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		user.setUsername(updatedUser.getUsername());
-		user.setPassword(updatedUser.getPassword());
+		//user.setPassword(Encryption.getEncodedPassword(updatedUser.getPassword()));
 		user.setAllergens(updatedUser.getAllergens());
 		user.setRecipes(updatedUser.getRecipes());
 
@@ -124,6 +128,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public UserEntity addAllergenToUser(List<AllergenEntity> listOfAllergens, String username) {
+		UserEntity entity = userRepository.findByUsername(username);
+		entity.setAllergens(listOfAllergens);
+		for (AllergenEntity allergenEntity : entity.getAllergens()) {
+		}
+		updateUser(entity.getId(), entity);
+		return entity;
 	}
 
 }

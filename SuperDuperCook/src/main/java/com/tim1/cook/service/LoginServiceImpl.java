@@ -29,16 +29,16 @@ public class LoginServiceImpl implements LoginService {
 	private SecretKey secretKey;
 
 	@Override
-	public LoginDTO login(String username, String password) throws Exception {
-		UserEntity user = userRepository.findByUsername(username);
+    public LoginDTO login(String username, String password) throws Exception {
+        UserEntity user = userRepository.findByUsername(username);
 
-		if (user != null && Encryption.validatePassword(password, user.getPassword())) {
-			String token = generateJWTToken(user);
-			return new LoginDTO(username, token, user.getRole().getName());
-		} else {
-			throw new Exception("Invalid username or password");
-		}
-	}
+        if (user != null && Encryption.validatePassword(password, user.getPassword())) {
+            String token = generateJWTToken(user);
+            return new LoginDTO(username, token, user.getRole().getName());
+        } else {
+            throw new Exception("Invalid username or password");
+        }
+    }
 
 	private String generateJWTToken(UserEntity userEntity) {
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils

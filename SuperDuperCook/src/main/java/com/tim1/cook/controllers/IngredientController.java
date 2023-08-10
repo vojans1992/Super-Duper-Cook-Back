@@ -43,6 +43,7 @@ public class IngredientController {
 		return ResponseEntity.ok(ingredient);
 	}
 
+	
 	@GetMapping
 	public ResponseEntity<List<IngredientEntity>> getAllIngredients() {
 		List<IngredientEntity> ingredients = ingredientService.getAllIngredients();

@@ -34,11 +34,11 @@ public class UserEntity {
 
 	@NotNull(message = "Username must be provided.")
 	@Column(name = "username", unique = true, length = 20)
-	@Size(min = 5, max = 20, message = "Username name must be between {min} and {max} characters long.")
+	@Size(min = 5, max = 20, message = "Username must be between {min} and {max} characters long.")
 	private String username;
 
+	
 	@NotNull(message = "Password must be provided.")
-	@Size(min = 5, max = 20, message = "Password name must be between {min} and {max} characters long.")
 	private String password;
 	
 	@ManyToMany
