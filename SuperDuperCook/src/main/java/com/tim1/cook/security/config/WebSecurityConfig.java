@@ -35,6 +35,7 @@ public class WebSecurityConfig {
 		http.cors().and().csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(this.secretKey), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/v1/ratios**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/v1/recipe**").permitAll().anyRequest()
 				.authenticated();
 		return http.build();

@@ -133,7 +133,9 @@ public class RecipeServiceImpl implements RecipeService {
 	public RecipeEntity addToFav(int recipeId, String username) {
 		UserEntity user = userService.findByUsername(username);
 		RecipeEntity recipe = repository.findById(recipeId).get();
-		
+		if(user.getRecipes().contains(recipe)) {
+			return recipe;
+		}
 		user.getRecipes().add(recipe);
 		userService.updateUser(user.getId(), user);
 		
