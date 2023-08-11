@@ -163,7 +163,6 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/{username}/allergens") 
 	public ResponseEntity<?> addAllergenToUser(@PathVariable String username, @RequestBody List<AllergenEntity> listOfAllergens) {
-		
 		UserEntity user = userService.addAllergenToUser(listOfAllergens, username);
 		if(user != null) {
 			return new ResponseEntity<>( user, HttpStatus.OK);

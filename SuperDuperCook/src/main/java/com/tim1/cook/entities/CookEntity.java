@@ -18,19 +18,19 @@ public class CookEntity extends UserEntity{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "author", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	private List<RecipeEntity> recipes = new ArrayList<RecipeEntity>();
+	private List<RecipeEntity> myRecipes = new ArrayList<RecipeEntity>();
 	
 	public CookEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<RecipeEntity> getRecipes() {
-		return recipes;
+	public List<RecipeEntity> getMyRecipes() {
+		return myRecipes;
 	}
 
-	public void setRecipes(List<RecipeEntity> recipes) {
-		this.recipes = recipes;
+	public void setMyRecipes(List<RecipeEntity> recipes) {
+		this.myRecipes = recipes;
 	}
 
 }

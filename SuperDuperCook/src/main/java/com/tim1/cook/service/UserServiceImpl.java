@@ -133,6 +133,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity addAllergenToUser(List<AllergenEntity> listOfAllergens, String username) {
 		UserEntity entity = userRepository.findByUsername(username);
+		System.out.println(entity.getUsername());
 		entity.setAllergens(listOfAllergens);
 		for (AllergenEntity allergenEntity : entity.getAllergens()) {
 		}

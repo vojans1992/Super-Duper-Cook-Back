@@ -54,6 +54,7 @@ public class RecipeEntity {
     private double saturatedFat;
     private double protein;
 	
+    @JsonIgnore
 	@NotNull(message = "Recipe must have an author.")
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name= "author", nullable = false)

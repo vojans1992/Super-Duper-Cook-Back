@@ -49,7 +49,6 @@ public class UserEntity {
 	@JoinColumn(name = "role")
 	private RoleEntity role;
 
-	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "user_allergen", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "allergen_id"))
 	private List<AllergenEntity> allergens = new ArrayList<AllergenEntity>();
